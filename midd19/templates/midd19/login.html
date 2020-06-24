@@ -1,19 +1,30 @@
 {% extends "midd19/base.html" %}
 
 {% block body %}
-<h1>Login</h1>
-{% if message %}
-    <div>
-        {{ message }}
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="body-block">
+      <h1 class="h1-login">Welcome to Midd19</h1>
+      {% if message %}
+          <div>
+              {{ message }}
+          </div>
+      {% endif %}
+      <div class="form">
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <input name="username" type="text" placeholder="username" class="col-lg-5 col-md-8 col-sm-8"/>
+            <input name="password" type="password" placeholder="password" class="col-lg-5 col-md-8 col-sm-8"/>
+            <div>
+              <input type="submit" value="Login"/>
+            </div>
+        </form>
+      </div>
+        <p class="register">
+          Don't have an account yet? <a href= "{% url 'register' %}">Click here</a> to create one today.
+        </p>
+      {% endblock %}
     </div>
-{% endif %}
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    <input name="username" type="text"/>
-    <input name="password" type="password"/>
-    <input type="submit" value="Login"/>
-</form>
-<div>
-Don't have an account yet? <a href= "{% url 'register' %}">Click here</a> to create one today.
-</div>
-{% endblock %}
+  </div>
+</section>
