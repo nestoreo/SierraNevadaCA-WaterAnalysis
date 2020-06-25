@@ -5,7 +5,6 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from midd19.forms import SignUpForm
-from django.views.decorators.csrf import csrf_exempt
 #create views
 
 def index(request):
@@ -30,7 +29,7 @@ def logout_view(request):
       logout(request)
       return render(request, "midd19/login.html", {"message": "Logged out."})
 
-@csrf_exempt
+
 def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -42,5 +41,5 @@ def register(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
     else:
-        form = SignUpForm()
-    return render(request, 'midd19/register.html', {'form': form})
+            form = SignUpForm()
+            return render(request, 'midd19/register.html', {'form': form})
