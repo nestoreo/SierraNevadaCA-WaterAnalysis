@@ -1,0 +1,31 @@
+
+{% extends "midd19/layout.html" %}
+
+{% load static %}
+{% block body %}
+
+<table>
+<h1>Chat room</h1>
+  <div class="container">
+        <img src="{% static "images/mask.jpg "%}" alt="Avatar">
+        <p>
+          <a href="#">  Masks on campus! Help! </a> <br>
+          Hi guys! I need some help with finding a way to... <a href="#">more</a>
+        </p>
+        <span class="time-right">11:00</span>
+  </div>
+
+        <div class="container">
+            <div class="chatforms">
+              <h1>Post a chat room</h1>
+              <form class="form">
+                <input type="text" placeholder="Topic">
+              </form>
+              <form class="form">
+                <input type="text" placeholder="Description">
+              </form><br>
+              <button class="btn">Submit</button>
+            </div>
+          </div>
+</table>
+{% endblock %}
