@@ -3,30 +3,41 @@
 
 
 {% block body %}
-<h1>Register</h1>
-{% if message %}
-    <div>
-        {{ message }}
+<section class="hero-register">
+  <div class="hero-content-register">
+    <div class="body-block">
+      <h1 class="h1-login">Register</h1>
+      <div class="alert alert-primary" role="alert">
+        Welcome to Midd-19! Signing up will allow you to participate in discussions, order from local restaurants, and access facilities' schedules.
+      </div>
+      {% if message %}
+          <div>
+              {{ message }}
+          </div>
+      {% endif %}
+      <div class="register-form">
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+              <p>
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+                {% if field.help_text %}
+                  <small style="color: white">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                {% endfor %}
+              </p>
+            {% endfor %}
+            <div class="button-container">
+              <button type="submit" class="register-button">Sign up</button>
+            </div>
+          </form>
+          <div>Already have an account?
+        <a href="{% url 'index'%}">Click here</a> to login.</div>
+      </div>
     </div>
-{% endif %}
-<div class="h1-login">
-<div class="form">
-  <form action="{% url 'register' %}" method="post">
-      {% for field in form %}
-        <p>
-          {{ field.label_tag }}<br>
-          {{ field }}
-          {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-          {% endif %}
-          {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-          {% endfor %}
-        </p>
-      {% endfor %}
-      <button type="submit">Sign up</button>
-  </form>
-</div>
-</div>
-  <div>Already have an account?<a href="{% url 'index'%}">Click here</a> to login.</div>
+  </div>
+</section>
 {% endblock %}
