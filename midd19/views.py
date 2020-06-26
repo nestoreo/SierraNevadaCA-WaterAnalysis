@@ -13,7 +13,8 @@ def index(request):
     context ={"user": request.user}
     return render(request, "midd19/index.html", context)
 
-
+def chatforum(request):
+    return render(request, "midd19/chatforum.html", {'messaged':None})
 
 def login_view(request):
     username = request.POST.get("username")
