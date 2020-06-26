@@ -4,16 +4,20 @@
 
 }
 
-.hero{
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  display; flex;
-  justify-content: center;
-  align-items: center;
+.hero-register{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-image: url("/static/images/midd_fall_hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
-
-.hero::before{
+.hero-login{
   content: "";
   position: absolute;
   top: 0;
@@ -22,20 +26,27 @@
   height: 100%;
   background-image: url("/static/images/midd_fall_hero.jpg");
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
-.hero-content{
+.hero-content-login{
   position: relative;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-.body-block{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.hero-content-register{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.body-block {
+  grid-area: 2/2/3/3;
+  width: 500px;
   padding: 2% 5% 5% 5%;
   border-radius: 8%;
   background-color: rgba(2, 0, 99, 0.6);
@@ -94,4 +105,22 @@
   font-size: 16px;
   padding: 12px 24px;
   background-color: #555;
+.register-form {
+  color: white;
+}
+
+.register-button:hover {
+  background-color: #deebff;
+}
+
+.register-button {
+  background-color: #afccfa;
+  padding: 12px 24px;
+  border-radius: 5px;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
