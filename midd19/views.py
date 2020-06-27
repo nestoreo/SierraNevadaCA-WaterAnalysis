@@ -1,10 +1,10 @@
 from django.contrib.auth import authenticate,login,logout
-#from rest_framework import authentication
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from midd19.forms import SignUpForm
+from .forms import SignUpForm,postForm
+from .models import Post, Comment
 #create views
 
 def index(request):
@@ -14,7 +14,8 @@ def index(request):
     return render(request, "midd19/index.html", context)
 
 def chatforum(request):
-    return render(request, "midd19/chatforum.html", {'messaged':None})
+    context={"posts":Post.objects.all()}
+    return render(request, "midd19/chatforum.html", context)
 
 def login_view(request):
     username = request.POST.get("username")
@@ -44,3 +45,11 @@ def register(request):
     else:
         form = SignUpForm()
     return render(request, 'midd19/register.html', {'form': form})
+
+def post(request):
+    if request.method=="GET":
+        return render(request,'midd19/post.html',{'message':None})
+    else:
+        content = request.POST.get("content")
+        title = request.POST.get("title")
+        username=request.user

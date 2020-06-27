@@ -1,0 +1,30 @@
+
+{% extends "midd19/layout.html" %}
+{% load static %}
+{% block body %}
+<style>
+  .box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border:1px solid blue;
+    width:100%;
+    margin:5px 0;
+    padding:3px;
+}
+  </style>
+<body>
+  <div>
+    <form action="{%url 'post' %}" method="POST">
+      <label for="title">Title:</label>
+      <input class="box" type="text" placeholder="Title" name="title" id="title"><br>
+      <label for="title">Post:</label>
+      <textarea class="box" placeholder="Write here"  name="post" id="post"></textarea>
+      <label for="anonymous">Check to post anonymous:</label>
+      <input type="checkbox" name="anonymous" id="anonymous"><br>
+      <button type="submit" class="register-button">Post</button>
+    </form>
+    </div>
+</body>
+
+{% endblock %}

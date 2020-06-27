@@ -2,113 +2,34 @@
 {% extends "midd19/layout.html" %}
 {% load static %}
 {% block body %}
-<!-- Add icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-<script>
-function myFunction(x) {
-x.classList.toggle("fa-thumbs-down");
-}
-</script>
 <style>
-
-  /* Create two unequal columns that floats next to each other */
-  /* Left column */
-  .leftcolumn {
-    float:left;
-    width: 62%;
-    padding-left: 20px;
+  ul{
+    margin-bottom: 20px;
+    list-style-type: none;
   }
-
-  /* Right column */
-  .rightcolumn {
+  li{
     float: left;
-    width: 35%;
-    padding-left: 20px;
+    margin-right: 10px;
   }
-
-  /* Add a card effect for articles */
-  .card {
-    background-color: orange;
-    padding: 20px;
-    margin-top: 20px;
-  }
-
-body{
-  padding: 20px;
-}
-
-input{
-  width: 80%;
-  height: auto;
-  padding: 20px 10px;
-}
-
-.fa {
-  font-size: 30px;
-}
-
-.choosecard{
-  float: left;
-}
-
-.peopletop{
-  height: 100%;
-}
-
-/* Footer */
-.footer {
-  background: darkorange;
-  text-align: center;
-  margin-top: 20px;
-}
-
 </style>
 <body>
-
-<div class="row">
-  <div class="leftcolumn">
-
-    <div class="card">
-      <form>
-        <input type="text" placeholder="Whats on your mind">
-        <button class="btn">Submit</button>
-      </form>
-    </div>
-
-
-
-
-    <div class="card">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-        <img class="peopletop" src="{% static "images/rain.gif" %}" >
-      <p>Some text..</p>
-      <!-- Use an element to toggle between a like/dislike icon -->
-      <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
-    </div>
-
+  <div>
+    <a class="btn" href="{%url 'post'%}">Post a Comment</a>
   </div>
-
-  <div class="rightcolumn">
-
-    <div class="card">
-      <h2>Popular Members</h2>
-      <div class="fakeimg" style="height:100px;">
-        <img class="peopletop" src="{% static "images/elder.gif" %}" >
-      </div>
-      <p>Old but kul!...</p>
-    </div>
-    <div class="card">
-      <h3>Popular Posts</h3>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div><br>
-      <div class="fakeimg">Image</div>
-    </div>
-</div>
-</div>
-
-
-<body>
+  <div>
+    <ul>
+      {%for post in posts%}
+      <li>
+        <div class="container">
+            <p>
+              <a href="#"> post.title </a> <br>
+              post.content
+            </p>
+          <span class="time-right">post.time</span>
+        </div>
+      </li>
+      {%endfor%}
+    </ul>
+  </div>
+</body>
 {% endblock %}
