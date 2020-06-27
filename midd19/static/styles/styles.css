@@ -1,8 +1,28 @@
 
 
-:root{
+
+/*chat Chatforum starts here--------------------------------------------------*/
+.ldposts{
+    background-color: lightblue
 
 }
+.ldposts .post{
+    position: relative;
+    height: 400 px;
+    width: 33%;
+    float: left;
+    margin: 0 auto;
+    /*
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    */
+}
+
+
+
+/*chat forum ends here--------------------------------------------------------*/
+
 
 .hero-register{
   content: "";

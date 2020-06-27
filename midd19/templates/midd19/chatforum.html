@@ -1,35 +1,61 @@
 
 {% extends "midd19/layout.html" %}
 {% load static %}
+
+{% block title %} Chatforum{% endblock %}
+
 {% block body %}
-<style>
-  ul{
-    margin-bottom: 20px;
-    list-style-type: none;
-  }
-  li{
+
+<section class="ldposts">
+    <div class="container-fluid" >
+        <div class="row d-flex align-items-stretch">
+            {%for p in most_liked%}
+            <div class="post">
+                <h2>{{ p.title }}</h2>
+                <p> {{ p.content }} </p>
+                <span class="time-right">{{ p.time }}</span>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+        <!--
+        <style>
+        ul{
+        margin-bottom: 20px;
+        list-style-type: none;
+    }
+    li{
     float: left;
     margin-right: 10px;
-  }
+}
 </style>
 <body>
-  <div>
-    <a class="btn" href="{%url 'post'%}">Post a Comment</a>
-  </div>
-  <div>
-    <ul>
-      {%for post in posts%}
-      <li>
-        <div class="container">
-            <p>
-              <a href="#"> post.title </a> <br>
-              post.content
-            </p>
-          <span class="time-right">post.time</span>
-        </div>
-      </li>
-      {%endfor%}
-    </ul>
-  </div>
+<div>
+<a class="btn" href="{%url 'post'%}">Post a Comment</a>
+</div>
+<div>
+<ul>
+{%for post in posts%}
+<li>
+<div class="container">
+<p>
+<a href="#"> post.title </a> <br>
+post.content
+</p>
+<span class="time-right">post.time</span>
+</div>
+</li>
+{%endfor%}
+</ul>
+</div>
 </body>
+-->
 {% endblock %}
