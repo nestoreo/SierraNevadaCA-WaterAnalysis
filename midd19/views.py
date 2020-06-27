@@ -14,7 +14,7 @@ def index(request):
     return render(request, "midd19/index.html", context)
 
 def chatforum(request):
-    context={"posts":Post.objects.all()}
+    context={"posts":reversed(Post.objects.all())}
     return render(request, "midd19/chatforum.html", context)
 
 def login_view(request):

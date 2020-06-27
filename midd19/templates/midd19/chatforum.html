@@ -17,20 +17,26 @@
     <a class="btn" href="{%url 'post'%}">Post a Comment</a>
   </div>
   <div>
-    <ul>
       {%for post in posts%}
-      <li>
+        <table class="table">
+          <thead>
+            <tr>
         <div class="container">
             <p>
-              <a href="#"> {{post.title}} </a> <br>
-              {{post.content}}<br><br>
-              {{post.user.username}}
+              <a style ="font-size:20px" href="#"> {{post.title}} </a> <br>
+              <span style ="font-size:15px">{{post.content}}</span>
             </p>
-          <span class="time-right">{{post.time}}</span>
+            {%if post.anonymous%}
+            <span style ="font-size:12px">Anonymous</span>
+            {%else%}
+              <a href="#" style ="font-size:12px">{{post.user.username}}</a>
+            {%endif%}
+          <span style ="font-size:12px"  class="time-right">{{post.time}}</span>
         </div>
-      </li>
+        </tr>
+        </thead>
+        </table>
       {%endfor%}
-    </ul>
   </div>
 </body>
 {% endblock %}
