@@ -16,7 +16,7 @@ class PostForm(forms.ModelForm):
         model=Post
         fields=['title','content','anonymous']
         widgets={
-            "title":forms.TextInput(attrs={'class':"box","placeholder":"title","name":"title","id":"title"}),
-            "content":forms.TextInput(attrs={"type":"textarea",'class':"box","placeholder":"write here","name":"post","id":"post"}),
+            "title":forms.TextInput(attrs={'class':"box","placeholder":"Title","name":"title","id":"title"}),
+            "content":forms.Textarea(attrs={'class':"box","placeholder":"Write Here","name":"post","id":"post"}),
             "anonymous":forms.CheckboxInput(attrs={"name":"anonymous","id":"anonymous"})
         }

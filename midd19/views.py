@@ -53,8 +53,10 @@ def post(request):
             title = form.cleaned_data.get("title")
             content = form.cleaned_data.get('content')
             anonymous=form.cleaned_data.get('anonymous')
-            post=Post(title=title,content=content,anonymous=anonymous,username=request.user)
-            render(request,'midd19/chatforum.html',{"message":None})
+            username = request.user
+            post=Post(title=title,content=content,anonymous=anonymous,user=request.user)
+            post.save()
+            return HttpResponseRedirect(reverse("chatforum"))
     else:
         form=PostForm()
         return render(request,'midd19/post.html',{'form':form})

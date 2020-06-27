@@ -22,10 +22,11 @@
       <li>
         <div class="container">
             <p>
-              <a href="#"> post.title </a> <br>
-              post.content
+              <a href="#"> {{post.title}} </a> <br>
+              {{post.content}}<br><br>
+              {{post.user.username}}
             </p>
-          <span class="time-right">post.time</span>
+          <span class="time-right">{{post.time}}</span>
         </div>
       </li>
       {%endfor%}
