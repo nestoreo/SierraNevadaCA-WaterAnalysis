@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .forms import SignUpForm,postForm
+from .forms import SignUpForm, PostForm
 from .models import Post, Comment
 #create views
 
@@ -44,12 +44,17 @@ def register(request):
             return HttpResponseRedirect(reverse("index"))
     else:
         form = SignUpForm()
-    return render(request, 'midd19/register.html', {'form': form})
+        return render(request, 'midd19/register.html', {'form': form})
 
 def post(request):
-    if request.method=="GET":
-        return render(request,'midd19/post.html',{'message':None})
+    if request.method =="POST":
+        form=PostForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data.get("title")
+            content = form.cleaned_data.get('content')
+            anonymous=form.cleaned_data.get('anonymous')
+            post=Post(title=title,content=content,anonymous=anonymous,username=request.user)
+            render(request,'midd19/chatforum.html',{"message":None})
     else:
-        content = request.POST.get("content")
-        title = request.POST.get("title")
-        username=request.user
+        form=PostForm()
+        return render(request,'midd19/post.html',{'form':form})
