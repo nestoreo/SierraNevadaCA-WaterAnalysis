@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+<<<<<<< HEAD
 from django.urls import reverse
+=======
+>>>>>>> 7c95fe794f3fd199c981babfa6d2ee61d5f5f86e
 
 class Post(models.Model):
     #input

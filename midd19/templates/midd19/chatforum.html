@@ -38,6 +38,7 @@
 }
 </style>
 <body>
+<<<<<<< HEAD
 <div>
 <a class="btn" href="{%url 'post'%}">Post a Comment</a>
 </div>
@@ -56,6 +57,33 @@ post.content
 {%endfor%}
 </ul>
 </div>
+=======
+  <div>
+    <a class="btn" href="{%url 'post'%}">Post a Comment</a>
+  </div>
+  <div>
+      {%for post in posts%}
+        <table class="table">
+          <thead>
+            <tr>
+        <div class="container">
+            <p>
+              <a style ="font-size:20px" href="#"> {{post.title}} </a> <br>
+              <span style ="font-size:15px">{{post.content}}</span>
+            </p>
+            {%if post.anonymous%}
+            <span style ="font-size:12px">Anonymous</span>
+            {%else%}
+              <a href="#" style ="font-size:12px">{{post.user.username}}</a>
+            {%endif%}
+          <span style ="font-size:12px"  class="time-right">{{post.time}}</span>
+        </div>
+        </tr>
+        </thead>
+        </table>
+      {%endfor%}
+  </div>
+>>>>>>> 7c95fe794f3fd199c981babfa6d2ee61d5f5f86e
 </body>
 -->
 {% endblock %}
