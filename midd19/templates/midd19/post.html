@@ -21,9 +21,11 @@
         {{field}}
       {%endfor%}
       <div class="button-container">
-        <button type="submit" class="register-button">Sign up</button>
+        <button type="submit" class="btn">Post</button>
       </div>
     </form>
+    <br>
+    <a class="btn" href="{%url 'chatforum'%}">Back to Posts</a>
 </body>
 
 {% endblock %}
