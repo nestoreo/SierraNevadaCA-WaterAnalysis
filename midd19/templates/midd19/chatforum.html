@@ -6,19 +6,44 @@
 
 {% block body %}
 
-<section class="ldposts">
-    <div class="container-fluid" >
-        <div class="row d-flex align-items-stretch">
-            {%for p in most_liked%}
-            <div class="post">
-                <h2>{{ p.title }}</h2>
-                <p> {{ p.content }} </p>
-                <span class="time-right">{{ p.time }}</span>
+<div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active most_liked" id="item">
+            <div class="card-deck">
+                {%for p in most_liked%}
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ p.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ p.user }}</h6>
+                        <p class="card-text">{{ p.content }}</p>
+                        <a href="#" class="card-link">countinue reading</a>
+                    </div>
+                    <div class="card-footer">
+                        <span class="time-right">{{ p.time }}</span>
+                    </div>
+                </div>
+                {%endfor%}
             </div>
-            {%endfor%}
+        </div>
+
+        <div class="carousel-item most_disliked">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        Most unliked
+    </a>
+</div>
 
 
 
@@ -26,15 +51,15 @@
 
 
 
-        <!--
-        <style>
-        ul{
-        margin-bottom: 20px;
-        list-style-type: none;
-    }
-    li{
-    float: left;
-    margin-right: 10px;
+<!--
+<style>
+ul{
+margin-bottom: 20px;
+list-style-type: none;
+}
+li{
+float: left;
+margin-right: 10px;
 }
 </style>
 <body>
@@ -58,31 +83,31 @@ post.content
 </ul>
 </div>
 =======
-  <div>
-    <a class="btn" href="{%url 'post'%}">Post a Comment</a>
-  </div>
-  <div>
-      {%for post in posts%}
-        <table class="table">
-          <thead>
-            <tr>
-        <div class="container">
-            <p>
-              <a style ="font-size:20px" href="#"> {{post.title}} </a> <br>
-              <span style ="font-size:15px">{{post.content}}</span>
-            </p>
-            {%if post.anonymous%}
-            <span style ="font-size:12px">Anonymous</span>
-            {%else%}
-              <a href="#" style ="font-size:12px">{{post.user.username}}</a>
-            {%endif%}
-          <span style ="font-size:12px"  class="time-right">{{post.time}}</span>
-        </div>
-        </tr>
-        </thead>
-        </table>
-      {%endfor%}
-  </div>
+<div>
+<a class="btn" href="{%url 'post'%}">Post a Comment</a>
+</div>
+<div>
+{%for post in posts%}
+<table class="table">
+<thead>
+<tr>
+<div class="container">
+<p>
+<a style ="font-size:20px" href="#"> {{post.title}} </a> <br>
+<span style ="font-size:15px">{{post.content}}</span>
+</p>
+{%if post.anonymous%}
+<span style ="font-size:12px">Anonymous</span>
+{%else%}
+<a href="#" style ="font-size:12px">{{post.user.username}}</a>
+{%endif%}
+<span style ="font-size:12px"  class="time-right">{{post.time}}</span>
+</div>
+</tr>
+</thead>
+</table>
+{%endfor%}
+</div>
 >>>>>>> 7c95fe794f3fd199c981babfa6d2ee61d5f5f86e
 </body>
 -->
