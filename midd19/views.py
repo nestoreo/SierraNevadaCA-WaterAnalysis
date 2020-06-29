@@ -59,7 +59,7 @@ def logout_view(request):
 def user_view(request, username):
     user = User.objects.get(username=username)
     user_posts=Post.objects.filter(user=user)
-    return render(request, "midd19/user_view.html",{"posts":user_posts})
+    return render(request, "midd19/user_view.html",{"posts":user_posts,"user":user})
 
 def register(request):
     if request.method == 'POST':

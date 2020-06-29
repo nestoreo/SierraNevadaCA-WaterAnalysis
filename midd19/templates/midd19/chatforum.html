@@ -72,7 +72,6 @@
         <button type="submit" class="btn">Post</button>
       </div>
     </form>
-
 </div>
 
 
@@ -106,80 +105,8 @@
         </div>
     </div>
     {% endfor %}
-
-
-
-
 </div>
 
-
-
-
-
-
-
-
-
-<!--
-<style>
-ul{
-margin-bottom: 20px;
-list-style-type: none;
-}
-li{
-float: left;
-margin-right: 10px;
-}
-</style>
-<body>
-<<<<<<< HEAD
-<div>
-<a class="btn" href="{%url 'post'%}">Post a Comment</a>
-</div>
-<div>
-<ul>
-{%for post in posts%}
-<li>
-<div class="container">
-<p>
-<a href="#"> post.title </a> <br>
-post.content
-</p>
-<span class="time-right">post.time</span>
-</div>
-</li>
-{%endfor%}
-</ul>
-</div>
-=======
-<div>
-<a class="btn" href="{%url 'post'%}">Post a Comment</a>
-</div>
-<div>
-{%for post in posts%}
-<table class="table">
-<thead>
-<tr>
-<div class="container">
-<p>
-<a style ="font-size:20px" href="#"> {{post.title}} </a> <br>
-<span style ="font-size:15px">{{post.content}}</span>
-</p>
-{%if post.anonymous%}
-<span style ="font-size:12px">Anonymous</span>
-{%else%}
-<a href="#" style ="font-size:12px">{{post.user.username}}</a>
-{%endif%}
-<span style ="font-size:12px"  class="time-right">{{post.time}}</span>
-</div>
-</tr>
-</thead>
-</table>
-{%endfor%}
-</div>
->>>>>>> 7c95fe794f3fd199c981babfa6d2ee61d5f5f86e
-</body>
--->
 {% endblock %}
 
 
@@ -211,6 +138,3 @@ post.content
         </div>
     </div>
 </div>
-
-
- -->
