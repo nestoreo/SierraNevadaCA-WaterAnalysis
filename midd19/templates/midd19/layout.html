@@ -32,10 +32,10 @@
         <header class="sticky-top " style="padding: 0px; margin: 0px" >
             <div class="row" style="padding: 0px; margin: 0px">
                 <div class="col-sm-1 bg-white">
-                    <img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo" width="100px">
+                    <a href="{% url "index"%}"><img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo" width="100px"></a>
                 </div>
                 <div class="col-sm-1 bg-white" style="margin:0px; padding: 0px">
-                    <p class="font-weight-normal pl-1 pt-2" style="vertical-align: baseline;font-family:Brush Script MT; font-size: 42px"> Midd 19</p>
+                    <a href="{% url "index"%}" style="text-decoration:none;color: black;"><p class="font-weight-normal pl-1 pt-2" style="vertical-align: baseline;font-family:Brush Script MT; font-size: 42px"> Midd 19</p></a>
                 </div>
                 <div class="col-sm-8 sol-sm-0 bg-white my-0 py-0">
                     <p>currently logged in as {{user.username}}</p>

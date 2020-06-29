@@ -21,7 +21,7 @@
             {% csrf_token %}
             {% for field in form %}
               <p>
-                {{ field.label_tag }}<br>
+                <span style="color: white">{{ field.label_tag }}</span><br>
                 {{ field }}<br>
                 {% if field.help_text %}
                   <small style="color: white">{{ field.help_text }}</small>
@@ -35,7 +35,7 @@
               <button type="submit" class="register-button">Sign up</button>
             </div>
           </form>
-          <div>Already have an account?
+          <div style="color: white">Already have an account?
         <a href="{% url 'index'%}">Click here</a> to login.</div>
       </div>
     </div>
