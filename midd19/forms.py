@@ -13,9 +13,9 @@ class SignUpForm(UserCreationForm):
 
 class PostForm(forms.ModelForm):
     class Meta:
-        model=Post
-        fields=['title','content','anonymous']
-        widgets={
+        model = Post
+        fields = ['title','content','anonymous']
+        widgets = {
             "title":forms.TextInput(attrs={'class':"box","placeholder":"Title","name":"title","id":"title"}),
             "content":forms.Textarea(attrs={'class':"box","placeholder":"Write Here","name":"post","id":"post"}),
             "anonymous":forms.CheckboxInput(attrs={"name":"anonymous","id":"anonymous"})

@@ -9,5 +9,9 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("chatforum", views.chatforum, name="chatforum"),
     path("user/<username>", views.user_view, name="user_view"),
+<<<<<<< HEAD
     path("post", views.post, name="post")
+=======
+
+>>>>>>> 5d299cf18b2a47e318832a93983738dea3a019f5
 ]

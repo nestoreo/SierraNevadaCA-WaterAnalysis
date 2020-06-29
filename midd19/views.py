@@ -16,14 +16,28 @@ def index(request):
     return render(request, "midd19/index.html", context)
 
 def chatforum(request):
-
     liked_posts_displayed = 3; #number of liked and uliked posts displayed
     posts_displayed = 5; #number of posts displayed on the page(!including liked/unliked)
     #get most liked Posts
     most_liked = Post.objects.all().order_by('-likes')[:liked_posts_displayed]
     least_liked = Post.objects.all().order_by('-dislikes')[:liked_posts_displayed]
     posts = Post.objects.all()[:posts_displayed]
-    return render(request, "midd19/chatforum.html", {"posts": posts, "most_liked": most_liked, "least_liked": least_liked})
+
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data.get("title")
+            content = form.cleaned_data.get('content')
+            anonymous = form.cleaned_data.get('anonymous')
+            username = request.user
+            post = Post(title=title,content=content,anonymous=anonymous,user=request.user)
+            post.save()
+            return HttpResponseRedirect(reverse('chatforum'))
+    else:
+        form = PostForm()
+    return render(request,'midd19/chatforum.html',{'form':form, "posts": posts, "most_liked": most_liked, "least_liked": least_liked})
+
+
 
 
 def login_view(request):
@@ -59,17 +73,18 @@ def register(request):
         form = SignUpForm()
     return render(request, 'midd19/register.html', {'form': form})
 
-def post(request):
-    if request.method =="POST":
-        form=PostForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data.get("title")
-            content = form.cleaned_data.get('content')
-            anonymous=form.cleaned_data.get('anonymous')
-            username = request.user
-            post=Post(title=title,content=content,anonymous=anonymous,user=request.user)
-            post.save()
-            return HttpResponseRedirect(reverse("chatforum"))
-    else:
-        form=PostForm()
-    return render(request,'midd19/post.html',{'form':form})
+#
+#def post(request):
+#    if request.method =="POST":
+#        form=PostForm(request.POST)
+#        if form.is_valid():
+#            title = form.cleaned_data.get("title")
+#            content = form.cleaned_data.get('content')
+#            anonymous = form.cleaned_data.get('anonymous')
+#            username = request.user
+#            post = Post(title=title,content=content,anonymous=anonymous,user=request.user)
+#            post.save()
+#            return HttpResponseRedirect(reverse("chatforum"))
+#    else:
+#        form = PostForm()
+#    return render(request,'midd19/chatforum.html',{'form':form})
