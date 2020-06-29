@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from .forms import SignUpForm #,postForm caused an error because postForm hasn't been written yet
+from .forms import SignUpForm,PostForm #,postForm caused an error because postForm hasn't been written yet
 
 from .models import Post, Comment
 #create views
@@ -53,15 +53,9 @@ def register(request):
             return HttpResponseRedirect(reverse("index"))
     else:
         form = SignUpForm()
-        return render(request, 'midd19/register.html', {'form': form})
+    return render(request, 'midd19/register.html', {'form': form})
 
 def post(request):
-    if request.method == "GET":
-        return render(request,'midd19/post.html',{'message':None})
-    else:
-        content = request.POST.get("content")
-        title = request.POST.get("title")
-        username = request.user
     if request.method =="POST":
         form=PostForm(request.POST)
         if form.is_valid():
@@ -74,4 +68,4 @@ def post(request):
             return HttpResponseRedirect(reverse("chatforum"))
     else:
         form=PostForm()
-        return render(request,'midd19/post.html',{'form':form})
+    return render(request,'midd19/post.html',{'form':form})
