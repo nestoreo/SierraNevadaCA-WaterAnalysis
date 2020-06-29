@@ -53,7 +53,7 @@ def register(request):
             return HttpResponseRedirect(reverse("index"))
     else:
         form = SignUpForm()
-        return render(request, 'midd19/register.html', {'form': form})
+    return render(request, 'midd19/register.html', {'form': form})
 
 def post(request):
     if request.method == "GET":
