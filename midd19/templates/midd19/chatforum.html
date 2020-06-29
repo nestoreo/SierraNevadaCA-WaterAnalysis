@@ -18,7 +18,7 @@
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="#"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
                         <p class="card-text">{{ p.content }}</p>
                         <a href="#" class="card-link">countinue reading</a>
@@ -42,7 +42,7 @@
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="#"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
 
                         <p class="card-text">{{ p.content }}</p>
@@ -82,7 +82,7 @@
               {%if p.anonymous%}
                 <span class="text-muted">Anonymous</span>
               {%else%}
-                <a href="#">{{ p.user }}</a>
+                <a href="{{p.get_absolute_url}}">{{ p.user }}</a>
               {%endif%}
                 <span class="time-right">{{ p.time }}</span>
             </div>

@@ -16,6 +16,9 @@ class Post(models.Model):
     likes=models.IntegerField(default=0)
     dislikes=models.IntegerField(default=0)
 
+    def get_absolute_url(self):
+        return f"/chatforum/{self.user.username}"
+
 
 
 class Comment(models.Model):

@@ -3,12 +3,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
-from .forms import SignUpForm,PostForm #,postForm caused an error because postForm hasn't been written yet
-
+from .forms import SignUpForm,PostForm
 from .models import Post, Comment
-#create views
+from django.contrib.auth.models import User
 
+
+#create views
 def index(request):
     if not request.user.is_authenticated:
         return render(request, "midd19/login.html", {'messaged':None})
@@ -40,6 +40,10 @@ def logout_view(request):
       logout(request)
       return render(request, "midd19/login.html", {"message": "Logged out."})
 
+def user_view(request, username):
+    user = User.objects.get(username=username)
+    user_posts=Post.objects.filter(user=user)
+    return render(request, "midd19/user_view.html",{"posts":user_posts})
 
 def register(request):
     if request.method == 'POST':
