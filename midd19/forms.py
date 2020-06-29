@@ -20,3 +20,12 @@ class PostForm(forms.ModelForm):
             "content":forms.Textarea(attrs={'class':"box","placeholder":"Write Here","name":"post","id":"post"}),
             "anonymous":forms.CheckboxInput(attrs={"name":"anonymous","id":"anonymous"})
         }
+        
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Comment
+        fields=['comment','anonymous']
+        widgets = {
+            "comment":forms.Textarea(attrs={'class':"box","placeholder":"Write Here","name":"comment","id":"comment"}),
+            "anonymous":forms.CheckboxInput(attrs={"name":"anonymous","id":"anonymous"})
+        }

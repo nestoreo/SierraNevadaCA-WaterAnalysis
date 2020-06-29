@@ -34,3 +34,6 @@ class Comment(models.Model):
     likes=models.IntegerField(default=0)
     dislikes=models.IntegerField(default=0)
     time=models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url_user(self):
+        return f"/user/{self.user.username}"

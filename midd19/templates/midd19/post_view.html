@@ -1,6 +1,17 @@
 {% extends "midd19/layout.html" %}
 {% load static %}
 {% block body %}
+<style>
+  .box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border:1px solid blue;
+    width:100%;
+    margin:5px 0;
+    padding:3px;
+}
+  </style>
 <h1>{{post.title}}</h1>
 {%if post.anonymous%}
 <p>Anonymous</p>
@@ -10,7 +21,35 @@
 <p>
 {{post.content}}
 <br><br>
+Comments: {{post.comment_count}}<br>
 {{post.time}}
+
 </p>
-<a class="btn" href="/chatforum">Back to Posts</a>
+<a class="btn" style="background-color:gray" href="/chatforum">Back to Posts</a>
+
+<form action="{%url "post_view" post.user.username post.id%}" method="POST">
+  {% csrf_token %}
+  {%for field in form%}
+  <br>
+    {{field.label_tag}}
+    {{field}}
+  {%endfor%}
+  <div class="button-container">
+    <button style="background-color:gray" type="submit" class="btn">Post</button>
+  </div>
+</form>
+
+{%for comment in comments%}
+<p>
+  <br>
+{{comment.comment}}
+<br>
+{%if comment.anonymous%}
+Anonymous
+{%else%}
+By: <a href="{{comment.get_absolute_url_user}}">{{comment.user.username}}</a>
+{%endif%}
+{{comment.time}}
+</p>
+{%endfor%}
 {% endblock %}
