@@ -15,7 +15,11 @@
                 <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
                         <h5 class="card-title">{{ p.title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ p.user }}</h6>
+                        {%if p.anonymous%}
+                          <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
+                        {%else%}
+                          <a href="#"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                        {%endif%}
                         <p class="card-text">{{ p.content }}</p>
                         <a href="#" class="card-link">countinue reading</a>
                     </div>
@@ -35,7 +39,12 @@
                 <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
                         <h5 class="card-title">{{ p.title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ p.user }}</h6>
+                        {%if p.anonymous%}
+                          <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
+                        {%else%}
+                          <a href="#"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                        {%endif%}
+
                         <p class="card-text">{{ p.content }}</p>
                         <a href="#" class="card-link">countinue reading</a>
                     </div>
@@ -70,7 +79,11 @@
                 <a href="#" class="card-link">countinue reading</a>
             </div>
             <div class="card-footer " >
-                <span class="text-muted">{{ p.user }}</span>
+              {%if p.anonymous%}
+                <span class="text-muted">Anonymous</span>
+              {%else%}
+                <a href="#">{{ p.user }}</a>
+              {%endif%}
                 <span class="time-right">{{ p.time }}</span>
             </div>
 
