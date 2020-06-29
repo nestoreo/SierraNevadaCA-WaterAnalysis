@@ -8,5 +8,4 @@ urlpatterns = [
     #path("userdetails", views.user_details, name="user_details"),
     path("register", views.register, name="register"),
     path("chatforum", views.chatforum, name="chatforum"),
-    path("post", views.post, name="post")
 ]
