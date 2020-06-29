@@ -4753,6 +4753,12 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 
+
+.card:nth-child(even){
+
+
+}
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;

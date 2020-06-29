@@ -5,11 +5,12 @@
 {% block title %} Chatforum{% endblock %}
 
 {% block body %}
-
-<div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+<!--**********************liked/unliked posts area***************************-->
+<div id="carouselExampleControls" class="carousel slide carousel-fade" >
     <div class="carousel-inner">
-        <div class="carousel-item active most_liked" id="item">
-            <div class="card-deck">
+        <!--**************************liked posts****************************-->
+        <div class="carousel-item active most_liked">
+            <div class="card-group" id="mostlikedcards">
                 {%for p in most_liked%}
                 <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
@@ -23,27 +24,66 @@
                     </div>
                 </div>
                 {%endfor%}
+                <button type="button" class="btn btn-primary" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)">Most unliked</p></button>
             </div>
-        </div>
 
+        </div>
+        <!--*************************unliked posts***************************-->
         <div class="carousel-item most_disliked">
-            <div class="card-deck">
-                <div class="card">
+            <div class="card-group" id="mostunlikedcards">
+                {%for p in least_liked%}
+                <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <h5 class="card-title">{{ p.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ p.user }}</h6>
+                        <p class="card-text">{{ p.content }}</p>
+                        <a href="#" class="card-link">countinue reading</a>
+                    </div>
+                    <div class="card-footer">
+                        <span class="time-right">{{ p.time }}</span>
                     </div>
                 </div>
+                {%endfor%}
+                <button type="button" class="btn btn-primary" id="test" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)">Most liked</p></button>
             </div>
         </div>
     </div>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-        Most unliked
-    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">  </a>
 </div>
+
+<!--**************************post area***************************************-->
+<div class="row row-cols-1 row-cols-md-3 col-12">
+
+    {% for p in posts %}
+
+    <div class="col mb-4">
+        <div class="card text-white bg-dark h-100  ">
+            <div class="card-header d-flex flex-row" >
+                <img src="{% static "images/MIDD-19.png" %}" class="rounded-circle mr-3" height="50px" width="50px" alt="user-image">
+                <div>
+                    <h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4>
+                    <p class="card-text"><i class="far fa-clock pr-2"></i>{{ p.time }}</p>
+                </div>
+            </div>
+            <div class="card-body" >
+                <p class="card-text">{{ p.content }}</p>
+                <a href="#" class="card-link">countinue reading</a>
+            </div>
+            <div class="card-footer " >
+                <span class="text-muted">{{ p.user }}</span>
+                <span class="time-right">{{ p.time }}</span>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+</div>
+
+
 
 
 
@@ -112,3 +152,36 @@ post.content
 </body>
 -->
 {% endblock %}
+
+
+
+
+<!--PLEAE DONT DELETE -->
+<!--
+<div class="card promoting-card ">
+    <div class="card-body d-flex flex-row">
+        <!--**************please change here with user image******** -->
+        <img src="{% static "images/MIDD-19.png" %}" class="rounded-circle mr-3" height="50px" width="50px" alt="user-image">
+        <!-- Content -->
+        <div>
+            <!-- Title -->
+            <h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4>
+            <!-- Subtitle -->
+            <p class="card-text"><i class="far fa-clock pr-2"></i>{{ p.time }}</p>
+        </div>
+    </div>
+    <!-- Card content -->
+    <div class="card-body">
+        <div class="collapse-content">
+            <!-- Text -->
+            <p class="card-text collapse" id="collapseContent">{{ p.content }}</p>
+            <!-- Button -->
+            <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
+            <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i>
+
+        </div>
+    </div>
+</div>
+
+
+ -->

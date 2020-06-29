@@ -21,8 +21,9 @@ def chatforum(request):
     posts_displayed = 5; #number of posts displayed on the page(!including liked/unliked)
     #get most liked Posts
     most_liked = Post.objects.all().order_by('-likes')[:liked_posts_displayed]
+    least_liked = Post.objects.all().order_by('-dislikes')[:liked_posts_displayed]
     posts = Post.objects.all()[:posts_displayed]
-    return render(request, "midd19/chatforum.html", {"posts": posts, "most_liked": most_liked})
+    return render(request, "midd19/chatforum.html", {"posts": posts, "most_liked": most_liked, "least_liked": least_liked})
 
 
 def login_view(request):

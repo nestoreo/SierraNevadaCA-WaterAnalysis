@@ -2,22 +2,19 @@
 
 
 /*chat Chatforum starts here--------------------------------------------------*/
-.ldposts{
-    background-color: lightblue
 
+.collapse-content .fa.fa-heart:hover {
+  color: #f44336 !important;
 }
-.ldposts .post{
-    position: relative;
-    height: 400 px;
-    width: 33%;
-    float: left;
-    margin: 0 auto;
-    /*
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    */
+.collapse-content .fa.fa-share-alt:hover {
+  color: #0d47a1 !important;
 }
+/* for some reason my styling didn't work unless I had them add as a style tag.
+For content team, please try and see if you can fix this,its not a priority, you
+can also ignore it.
+
+Please check if you can style the feutured post in a way where odd cards has
+different color than even cards.
 /*chat forum ends here--------------------------------------------------------*/
 
 
