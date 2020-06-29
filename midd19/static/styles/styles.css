@@ -154,7 +154,7 @@ nav{
 }
 
 .midd-19-logo{
-  width: 120px;
+  width: 115px;
   margin-left: 10px;
   z-index: 5;
 }
@@ -169,43 +169,24 @@ nav{
 
 
 .title{
-  position: absolute;
-  top: 4%;
-  left: 16%;
+  position: fixed;
+  top: 8px;
+  left: 21%;
   vertical-align: baseline;
   font-family: Bookman;
-  font-size: 4.5vw
-}
-
-
-.symptom-container{
-  width: 15vw;
-  height: 8vw;
-  position: absolute;
-  right: 0%;
-  background-color:rgba(54, 117, 217);
-  border-radius: 8px;
-  margin: 14px 3px 0px 0px ;
-}
-
-.symptom-container p{
-  font-size: 1.5vw;
-  padding-top: 3%;
-  text-align: center;
-  color: white;
+  font-size: 4vw
 }
 
 
 .login-logout-container{
   position: absolute;
-  top: 0px;
-  right: 10px;
-  font-size: 10px;
+  top: 56px;
+  right: 4px;
+  font-size: 14px;
   margin-bottom: 2px;
 }
 
 .nav-container{
-  margin-top: 13px;
   padding-top: 0;
 }
 
@@ -219,6 +200,7 @@ nav{
 
 .nav-ul{
   list-style: none;
+  justify-content: space-between;
 }
 
 
@@ -230,7 +212,7 @@ nav{
 .nav-item{
   text-align: left;
   display: block;
-  font-size: 2vw;
+  font-size: 18px;
   color: #070175;
   font-family: Helvetica;
 }
@@ -243,7 +225,7 @@ nav{
 }
 
 .show-links {
-  height: 16rem;
+  height: 20rem;
 }
 
 #midd-title{
@@ -261,7 +243,6 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
   }
   .nav-header {
     padding: 0;
@@ -282,7 +263,15 @@ nav{
 }
 
 .image-appear{
-  display: flex;
+  content: "";
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-image: url("/static/images/midd_skyline.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .image-appear img{
@@ -296,11 +285,26 @@ nav{
   position: absolute;
   top: 0px;
   right: 10px;
-  font-size: 10px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
 }
 
 .menu-button{
   position: absolute;
-  top: 19px;
-  right: 4px;
+  top: 21px;
+  right: 17px;
+}
+
+.nav-toggle {
+  font-size: 2rem;
+  color: white;
+  background: transparent;
+  border-color: transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.nav-toggle:hover {
+  color: darkblue;
+  transform: rotate(90deg);
 }

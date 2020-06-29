@@ -3,6 +3,8 @@
 <html>
     <head>
         <title>{% block heading %} {% endblock %}</title>
+
+        <!--Bootstrap-->
         <link rel="stylesheet" href="{% static "styles/bootstrap_Midd19.css" %}" crossorigin="anonymous">
         <!--jquery-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -10,7 +12,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style media="screen"></style>
+
+        <!--button-->
+        <link rel="stylesheet" href="{% static "fontawesome-free-5.12.0-web/css/all.css" %}">
+
         {% load static %}
+        <!--Style Sheet-->
         <link rel="stylesheet" href="{% static "styles/styles.css" %}">
     </head>
       <!-- Header of the  page-->
@@ -18,15 +25,13 @@
           <div class="row top-nav-row"   id="midd-title">
               <div class="midd-19-logo">
                   {% load static %}
-                  <img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo">
+                  <a class="nav-item nav-link" href="{% url 'index'%}">
+                    <img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo">
+                  </a>
               </div>
                 <h1 class="title">
                   Middlebury's Covid Resource Page
                 </h1>
-              <div class="symptom-container">
-                  <p>Have symptoms?</p>
-                  <p>(802)-443-3290</p>
-              </div>
 
             <div class="login-logout-container">
                 <p>Hello, {{user.username}}
@@ -37,23 +42,22 @@
 
           <!--changes background of bar when the screen gets too small-->
           <div class="image-appear" id="midd-skyline">
-            <div class="midd-19-logo col-2">
+            <div class="midd-19-logo">
                 {% load static %} <!--make background clear-->
-                <img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo">
+                <a class="nav-item nav-link" href="{% url 'index'%}">
+                  <img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo">
+                </a>
             </div>
-            <img src="{% static "images/midd_skyline.jpg" %}" />
+            <!--<img src="{% static "images/midd_skyline.jpg" %}" />-->
             <div class="logout">
               <a href="{% url 'logout' %}">(Logout)</a>
             </div>
             <div class="menu-button">
-              <button type="button" class="nav-toggle btn-info">
-                menu
+              <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
               </button>
             </div>
           </div>
-
-
-          <hr class="py-0 my-0 bg-black">
 
           <nav>
             <div class="nav-container nav-center">
