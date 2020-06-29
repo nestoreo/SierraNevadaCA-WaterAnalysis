@@ -2,89 +2,92 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+        <title>{% block heading %} {% endblock %}</title>
+        <link rel="stylesheet" href="{% static "styles/bootstrap_Midd19.css" %}" crossorigin="anonymous">
         <!--jquery-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <!--bootsrap-->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style media="screen"></style>
+        {% load static %}
         <link rel="stylesheet" href="{% static "styles/styles.css" %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <style media="screen">
-            div{
-                padding: 0px;
-                margin: 0px;
-            }
-            .carousel-inner{
-                height: 600px;
-            }
-            .carousel-inner .carousel-item img{
-                height: 600px;
-                width: 100%;
-            }
-        </style>
-
     </head>
-    <body>
-        <header class="sticky-top" style="padding: 0px; margin: 0px" >
-            <div class="row" style="padding: 0px; margin: 0px">
-                <div class="col-sm-1 bg-white">
-                    <img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo" width="100px">
-                </div>
-                <div class="col-sm-1 bg-white" style="margin:0px; padding: 0px">
-                    <p class="font-weight-normal pl-1 pt-2" style="vertical-align: baseline;font-family:Brush Script MT; font-size: 42px"> Midd 19</p>
-                </div>
-                <div class="col-sm-8 sol-sm-0 bg-white my-0 py-0">
-                    <p>currently logged in as {{user.username}}</p>
-                    <a href="{% url 'logout' %}">Logout</a>
-                </div>
-                <div class="col-sm-2 bg-lightblue" style="background-color:lightblue">
-                    <p  class="text-center" style="padding-top:10px">Have symptoms?</p>
-                    <p  class="text-center" style=" height:20px"> 802-443-3290</p>
-                </div>
-            </div>
-            <hr class="py-0 my-0 bg-black">
+      <!-- Header of the  page-->
+      <header class="sticky-top main-nav">
+          <div class="row top-nav-row"   id="midd-title">
+              <div class="midd-19-logo">
+                  {% load static %}
+                  <img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo">
+              </div>
+                <h1 class="title">
+                  Middlebury's Covid Resource Page
+                </h1>
+              <div class="symptom-container">
+                  <p>Have symptoms?</p>
+                  <p>(802)-443-3290</p>
+              </div>
 
-            <div class="nav_bar my-0 py-0 bg-white">
-                <nav class="navbar navbar-expand-sm navbar-light my-0 py-0 justify-content-center">
+            <div class="login-logout-container">
+                <p>Hello, {{user.username}}
+                  <a href="{% url 'logout' %}">(Logout)</a>
+                </p>
+            </div>
+          </div>
+
+          <!--changes background of bar when the screen gets too small-->
+          <div class="image-appear" id="midd-skyline">
+            <div class="midd-19-logo col-2">
+                {% load static %} <!--make background clear-->
+                <img src="{% static "images/MIDD-19.png" %}" alt="Midd19_logo" id="logo">
+            </div>
+            <img src="{% static "images/midd_skyline.jpg" %}" />
+            <div class="logout">
+              <a href="{% url 'logout' %}">(Logout)</a>
+            </div>
+            <div class="menu-button">
+              <button type="button" class="nav-toggle btn-info">
+                menu
+              </button>
+            </div>
+          </div>
+
+
+          <hr class="py-0 my-0 bg-black">
+
+          <nav>
+            <div class="nav-container nav-center">
+                <div class="nav-tabs midd-nav">
 
                     <!--in case the num of navs changes, the styling need to change too. This should be written in js-->
-
-                    <ul class="navbar-nav my-0 py-0" id="navs">
-                        <li class="nav-item active px-4">
-                            <a class="nav-link" href="#">About us</a>
+                      <ul class="nav-ul links">
+                        <li>
+                          <a class="nav-item nav-link" href="#">News</a>
                         </li>
-                        <li class="nav-item px-4">
-                            <a class="nav-link" href="#">Testing</a>
+                        <li>
+                          <a class="nav-item nav-link" href="#">Safety Protocol</a>
                         </li>
-                        <li class="nav-item px-4">
-                            <a class="nav-link" href="#">News</a>
+                        <li>
+                          <a class="nav-item nav-link" href="{% url 'chatforum'%}">Chat Forum</a>
                         </li>
-                        <li class="nav-item px-4">
-                            <a class="nav-link" href="#">Safety Protocol</a>
+                        <li>
+                          <a class="nav-item nav-link" href="#">Food Delivery</a>
                         </li>
-                        <li class="nav-item px-4">
-                            <a class="nav-link" href="{% url 'chatforum'%}">Chat Forum</a>
+                        <li>
+                          <a class="nav-item nav-link" href="#">Gymnasium</a>
                         </li>
-                        <li class="nav-item px-4">
-                            <a class="nav-link" href="#">Order From Town</a>
+                        <li>
+                          <a class="nav-item nav-link" href="#">FAQ</a>
                         </li>
-                        <li class="nav-item px-4">
-                            <a class="nav-link" href="#">Gymnasium</a>
-                        </li>
-                        <li class="nav-item px-5">
-                            <a class="nav-link" href="#">FAQ</a>
-                        </li>
-                        <li class="nav-item px-5">
-                            <a class="nav-link" href="#">Contact us</a>
-                        </li>
-                    </ul>
-                </nav>
+                      </ul>
+                    {% load static %}
+                    <script src="{% static "JS/toggle_bar.js" %}"></script>
+                </div>
             </div>
-        </header>
-        {% block body %}
-        {% endblock %}
-
+          </nav>
+      </header>
+    <body>
+      {% block body %}
+      {% endblock %}
     </body>
 </html>

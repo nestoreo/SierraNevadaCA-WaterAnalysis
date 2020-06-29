@@ -66,6 +66,12 @@
   color: white;
 }
 
+.alert-message{
+  text-align: center;
+  color: white;
+  padding-bottom: 3px;
+}
+
 /* Chat containers */
 .container {
     border: 2px solid #dedede;
@@ -105,6 +111,8 @@
   font-size: 16px;
   padding: 12px 24px;
   background-color: #555;
+}
+
 .register-form {
   color: white;
 }
@@ -123,4 +131,176 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+/*Main page       /         Navbar*/
+nav{
+  background-color: white;
+}
+
+
+.main-nav{
+  padding: 0px;
+  margin: 0px;
+  background-color: white;
+}
+
+.top-nav-row{
+  padding: 0px;
+  margin: 0px;
+  background-color: white;
+  z-index: 1;
+}
+
+.midd-19-logo{
+  width: 120px;
+  margin-left: 10px;
+  z-index: 5;
+}
+
+.midd-19-logo img{
+  background-color: none;
+  width: 90%;
+  height: auto;
+  margin: 2% 2% 6% 5%;
+  padding:2%;
+}
+
+
+.title{
+  position: absolute;
+  top: 4%;
+  left: 16%;
+  vertical-align: baseline;
+  font-family: Bookman;
+  font-size: 4.5vw
+}
+
+
+.symptom-container{
+  width: 15vw;
+  height: 8vw;
+  position: absolute;
+  right: 0%;
+  background-color:rgba(54, 117, 217);
+  border-radius: 8px;
+  margin: 14px 3px 0px 0px ;
+}
+
+.symptom-container p{
+  font-size: 1.5vw;
+  padding-top: 3%;
+  text-align: center;
+  color: white;
+}
+
+
+.login-logout-container{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+.nav-container{
+  margin-top: 13px;
+  padding-top: 0;
+}
+
+.midd-nav{
+  background-color: white;
+  margin: -15px 0px 0px 0px;
+  border-radius: 10px;
+  width: 100%
+}
+
+
+.nav-ul{
+  list-style: none;
+}
+
+
+.nav-ul li{
+  float: left;
+  display: inline;
+}
+
+.nav-item{
+  text-align: left;
+  display: block;
+  font-size: 2vw;
+  color: #070175;
+  font-family: Helvetica;
+}
+
+.links {
+  margin: 0 4% 0 4%;
+  height: 0;
+  overflow: hidden;
+  width: 170px;
+}
+
+.show-links {
+  height: 16rem;
+}
+
+#midd-title{
+  display: none;
+}
+
+@media only screen and (min-width: 765px){
+  #midd-title{
+    display: flex;
+  }
+  #midd-skyline{
+    display: none;
+  }
+  .nav-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  .nav-header {
+    padding: 0;
+  }
+  .links {
+    height: auto;
+    display: flex;
+    width: auto;
+  }
+  .links a {
+    padding: 0;
+    margin: 0 0.5rem;
+  }
+  .links a:hover {
+    padding: 0;
+    background: transparent;
+  }
+}
+
+.image-appear{
+  display: flex;
+}
+
+.image-appear img{
+  width:100%;
+  height: auto;
+  z-index: -1;
+}
+
+
+.logout{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 10px;
+}
+
+.menu-button{
+  position: absolute;
+  top: 19px;
+  right: 4px;
 }
