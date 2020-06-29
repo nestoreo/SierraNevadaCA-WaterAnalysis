@@ -16,9 +16,11 @@ class Post(models.Model):
     likes=models.IntegerField(default=0)
     dislikes=models.IntegerField(default=0)
 
-    def get_absolute_url(self):
+    def get_absolute_url_user(self):
         return f"/user/{self.user.username}"
 
+    def get_absolute_url_post(self):
+        return f"/user/{self.user.username}/{self.id}"
 
 
 class Comment(models.Model):

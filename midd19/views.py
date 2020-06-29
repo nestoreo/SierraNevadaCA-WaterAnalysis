@@ -73,6 +73,9 @@ def register(request):
         form = SignUpForm()
     return render(request, 'midd19/register.html', {'form': form})
 
+def post_view(request,username,post_id):
+    user_post=Post.objects.get(id=post_id)
+    return render(request, "midd19/post_view.html", {"post":user_post})
 #
 #def post(request):
 #    if request.method =="POST":

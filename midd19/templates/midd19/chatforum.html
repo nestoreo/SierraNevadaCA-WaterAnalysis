@@ -14,11 +14,11 @@
                 {%for p in most_liked%}
                 <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{ p.title }}</h5>
+                        <a href="{{p.get_absolute_url_post}}"><h5 class="card-title">{{ p.title }}</h5></a>
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="{{p.get_absolute_url}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url_user}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
                         <p class="card-text">{{ p.content }}</p>
                         <a href="#" class="card-link">countinue reading</a>
@@ -38,11 +38,11 @@
                 {%for p in least_liked%}
                 <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{ p.title }}</h5>
+                        <a href="{{p.get_absolute_url_post}}"><h5 class="card-title">{{ p.title }}</h5></a>
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="{{p.get_absolute_url}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url_user}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
 
                         <p class="card-text">{{ p.content }}</p>
@@ -85,7 +85,7 @@
             <div class="card-header d-flex flex-row" >
                 <img src="{% static "images/MIDD-19.png" %}" class="rounded-circle mr-3" height="50px" width="50px" alt="user-image">
                 <div>
-                    <h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4>
+                    <a href="{{p.get_absolute_url_post}}"><h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4></a>
                     <p class="card-text"><i class="far fa-clock pr-2"></i>{{ p.time }}</p>
                 </div>
             </div>
@@ -97,7 +97,7 @@
               {%if p.anonymous%}
                 <span class="text-muted">Anonymous</span>
               {%else%}
-                <a href="{{p.get_absolute_url}}">{{ p.user }}</a>
+                <a href="{{p.get_absolute_url_user}}">{{ p.user }}</a>
               {%endif%}
                 <span class="time-right">{{ p.time }}</span>
             </div>

@@ -1,0 +1,16 @@
+{% extends "midd19/layout.html" %}
+{% load static %}
+{% block body %}
+<h1>{{post.title}}</h1>
+{%if post.anonymous%}
+<p>Anonymous</p>
+{%else%}
+<p>By: <a href="{{post.get_absolute_url_user}}">{{post.user.username}}</a></p>
+{%endif%}
+<p>
+{{post.content}}
+<br><br>
+{{post.time}}
+</p>
+<a class="btn" href="/chatforum">Back to Posts</a>
+{% endblock %}

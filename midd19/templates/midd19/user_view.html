@@ -12,7 +12,7 @@
             <div class="card-header d-flex flex-row" >
                 <img src="{% static "images/MIDD-19.png" %}" class="rounded-circle mr-3" height="50px" width="50px" alt="user-image">
                 <div>
-                    <h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4>
+                    <a href="{{p.get_absolute_url_post}}"><h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4></a>
                 </div>
             </div>
             <div class="card-body" >
