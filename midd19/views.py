@@ -17,7 +17,7 @@ def index(request):
 
 def chatforum(request):
     liked_posts_displayed = 3; #number of liked and uliked posts displayed
-    posts_displayed = 5; #number of posts displayed on the page(!including liked/unliked)
+    posts_displayed = 10; #number of posts displayed on the page(!including liked/unliked)
     #get most liked Posts
     most_liked = Post.objects.all().order_by('-likes')[:liked_posts_displayed]
     least_liked = Post.objects.all().order_by('-dislikes')[:liked_posts_displayed]
