@@ -136,14 +136,17 @@
 
 /*Main page       /         Navbar*/
 nav{
-  background-color: white;
+  background-color: transparent;
+  border-top: 5px;
+  padding-top: 15px;
+  position: absolute;
+  width: 100%
 }
 
 
 .main-nav{
   padding: 0px;
   margin: 0px;
-  background-color: white;
 }
 
 .top-nav-row{
@@ -169,7 +172,7 @@ nav{
 
 
 .title{
-  position: fixed;
+  position: sticky;
   top: 8px;
   left: 21%;
   vertical-align: baseline;
@@ -187,11 +190,11 @@ nav{
 }
 
 .nav-container{
-  padding-top: 0;
+  padding-top: 0px;
 }
 
 .midd-nav{
-  background-color: white;
+  background-color: rgba(0, 45, 107, 0.5);
   margin: -15px 0px 0px 0px;
   border-radius: 10px;
   width: 100%
@@ -213,7 +216,7 @@ nav{
   text-align: left;
   display: block;
   font-size: 18px;
-  color: #070175;
+  color: white;
   font-family: Helvetica;
 }
 
@@ -233,6 +236,7 @@ nav{
 }
 
 @media only screen and (min-width: 765px){
+
   #midd-title{
     display: flex;
   }
@@ -277,7 +281,6 @@ nav{
 .image-appear img{
   width:100%;
   height: auto;
-  z-index: -1;
 }
 
 
@@ -305,6 +308,6 @@ nav{
   cursor: pointer;
 }
 .nav-toggle:hover {
-  color: darkblue;
+  color: white;
   transform: rotate(90deg);
 }
