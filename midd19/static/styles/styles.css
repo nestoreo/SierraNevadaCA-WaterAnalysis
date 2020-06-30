@@ -80,6 +80,12 @@ different color than even cards.
   color: white;
 }
 
+.alert-message{
+  text-align: center;
+  color: white;
+  padding-bottom: 3px;
+}
+
 /* Chat containers */
 .container {
     border: 2px solid #dedede;
@@ -119,6 +125,8 @@ different color than even cards.
   font-size: 16px;
   padding: 12px 24px;
   background-color: #555;
+}
+
 .register-form {
   color: white;
 }
@@ -137,4 +145,183 @@ different color than even cards.
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+/*Main page       /         Navbar*/
+nav{
+  background-color: transparent;
+  border-top: 5px;
+  padding-top: 15px;
+  position: absolute;
+  width: 100%
+}
+
+
+.main-nav{
+  padding: 0px;
+  margin: 0px;
+}
+
+.top-nav-row{
+  padding: 0px;
+  margin: 0px;
+  background-color: white;
+  z-index: 1;
+}
+
+.midd-19-logo{
+  width: 115px;
+  margin-left: 10px;
+  z-index: 5;
+}
+
+.midd-19-logo img{
+  background-color: none;
+  width: 90%;
+  height: auto;
+  margin: 2% 2% 6% 5%;
+  padding:2%;
+}
+
+
+.title{
+  position: sticky;
+  top: 8px;
+  left: 21%;
+  vertical-align: baseline;
+  font-family: Bookman;
+  font-size: 4vw
+}
+
+
+.login-logout-container{
+  position: absolute;
+  top: 56px;
+  right: 4px;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.nav-container{
+  padding-top: 0px;
+}
+
+.midd-nav{
+  background-color: rgba(0, 45, 107, 0.5);
+  margin: -15px 0px 0px 0px;
+  border-radius: 10px;
+  width: 100%
+}
+
+
+.nav-ul{
+  list-style: none;
+  justify-content: space-between;
+}
+
+
+.nav-ul li{
+  float: left;
+  display: inline;
+}
+
+.nav-item{
+  text-align: left;
+  display: block;
+  font-size: 18px;
+  color: white;
+  font-family: Helvetica;
+}
+
+.links {
+  margin: 0 4% 0 4%;
+  height: 0;
+  overflow: hidden;
+  width: 170px;
+}
+
+.show-links {
+  height: 20rem;
+}
+
+#midd-title{
+  display: none;
+}
+
+@media only screen and (min-width: 765px){
+
+  #midd-title{
+    display: flex;
+  }
+  #midd-skyline{
+    display: none;
+  }
+  .nav-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-header {
+    padding: 0;
+  }
+  .links {
+    height: auto;
+    display: flex;
+    width: auto;
+  }
+  .links a {
+    padding: 0;
+    margin: 0 0.5rem;
+  }
+  .links a:hover {
+    padding: 0;
+    background: transparent;
+  }
+}
+
+.image-appear{
+  content: "";
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background-image: url("/static/images/midd_skyline.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.image-appear img{
+  width:100%;
+  height: auto;
+}
+
+
+.logout{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 3px;
+}
+
+.menu-button{
+  position: absolute;
+  top: 21px;
+  right: 17px;
+}
+
+.nav-toggle {
+  font-size: 2rem;
+  color: white;
+  background: transparent;
+  border-color: transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.nav-toggle:hover {
+  color: white;
+  transform: rotate(90deg);
 }
