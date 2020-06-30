@@ -22,7 +22,7 @@
                         {%if post.anonymous%}
                         <span class="text-muted"Anonymous</span>
                             {%else%}
-                            <a href="{{p.get_absolute_url_user}}" style="color:black">{{ post.user }}</a>
+                            <a href="{{post.get_absolute_url_user}}" style="color:black">{{ post.user }}</a>
                             {%endif%}
                         </p>
                         <hr>
