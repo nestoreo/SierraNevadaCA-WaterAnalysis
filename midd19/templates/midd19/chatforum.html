@@ -5,6 +5,17 @@
 {% block title %} Chatforum{% endblock %}
 
 {% block body %}
+<style>
+  .box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border:1px solid blue;
+    width:100%;
+    margin:5px 0;
+    padding:3px;
+}
+  </style>
 <!--**********************liked/unliked posts area***************************-->
 <div id="carouselExampleControls" class="carousel slide carousel-fade" >
     <div class="carousel-inner">
@@ -14,11 +25,11 @@
                 {%for p in most_liked%}
                 <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{ p.title }}</h5>
+                        <a href="{{p.get_absolute_url_post}}"><h5 class="card-title">{{ p.title }}</h5></a>
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="{{p.get_absolute_url}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url_user}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
                         <p class="card-text">{{ p.content }}</p>
                         <a href="#" class="card-link">countinue reading</a>
@@ -38,13 +49,12 @@
                 {%for p in least_liked%}
                 <div class="card text-white bg-dark mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{ p.title }}</h5>
+                        <a href="{{p.get_absolute_url_post}}"><h5 class="card-title">{{ p.title }}</h5></a>
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="{{p.get_absolute_url}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url_user}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
-
                         <p class="card-text">{{ p.content }}</p>
                         <a href="#" class="card-link">countinue reading</a>
                     </div>
@@ -60,32 +70,114 @@
     <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">  </a>
 </div>
 
-<!--***************************post here*************************************-->
-<div class="container col-11">
-    <form action="{%url 'chatforum'%}" method="POST">
-      {% csrf_token %}
-      {%for field in form%}
-        {{field.label_tag}}
-        {{field}}
-      {%endfor%}
-      <div class="button-container">
-        <button type="submit" class="btn">Post</button>
-      </div>
-    </form>
+<!--***************************post form*************************************-->
+<div class="container-fluid"">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 align-self-center">
+            <form action="{%url 'chatforum'%}" method="POST">
+              {% csrf_token %}
+              {%for field in form%}
+                {{field.label_tag}}
+                {{field}}<br>
+              {%endfor%}
+              <div class="button-container">
+                <button style="background-color:gray" type="submit" class="btn">Post</button>
+              </div>
+            </form>
+
+        </div>
+
+    </div>
+
 </div>
 
 
 <!--**************************posts area***************************************-->
+{% for p in posts %}
+<div class=" container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 align-self-center">
+            <div class="card mt-4 text-white bg-dark">
+                <div class="card-body py-0">
+
+                    <!-- Title -->
+                    <h1 class="mt-4"><a href="{{p.get_absolute_url_post}}"style="color:white">{{ p.title }}</a></h1>
+                    <!-- Author -->
+                    <p class="lead">
+                        by
+                        {%if p.anonymous%}
+                        <span class="text-muted"Anonymous</span>
+                        {%else%}
+                        <a href="{{p.get_absolute_url_user}}" style="color:white">{{ p.user }}</a>
+                        {%endif%}
+                    </p>
+                    <hr>
+                    <!-- Date/Time -->
+                    <p>Posted on {{ p.time }}</p>
+                    <hr>
+                    <!-- Post Content -->
+                    <p class="text-justify">{{ p.content }}</p>
+                    <hr class="my-2">
+                    <!-- like/dislike buttons-->
+                    <div class="d-flex justify-content-around">
+                        <button type="submit" class="btn btn-dark btn-block"><i class="fas fa-thumbs-up fa-lg "></i> like</button>
+                        <button type="submit" class="btn btn-dark w-100"><i class="fas fa-thumbs-down fa-lg "></i> Dislike </button>
+                    </div>
+                    <hr class="mt-2">
+                    <!-- Single Comment -->
+                    <div class="media mb-4">
+                        <!-- user img-->
+                      <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
+                      <div class="media-body">
+                        <h5 class="mt-0">Commenter Name</h5>
+                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                      </div>
+                    </div>
+                    <!-- Comments Form -->
+                    <div class="card bg-dark mb-4">
+                      <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <div class="d-flex">
+                                    <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
+                                    <textarea placeholder="Write a comment..."class="form-control" rows="1"></textarea>
+                                    <button type="submit" class="btn btn-dark">Comment</button>
+                                </div>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endfor%}
+
+
 <div class="row row-cols-1 row-cols-md-3 col-12">
 
     {% for p in posts %}
-
     <div class="col mb-4">
         <div class="card text-white bg-dark h-100  ">
             <div class="card-header d-flex flex-row" >
-                <img src="{% static "images/MIDD-19.png" %}" class="rounded-circle mr-3" height="50px" width="50px" alt="user-image">
+                <img src="{% static "images/MIDD-19.png" %}" class="rounded-circle mx-auto d-block mr-3" height="50px" width="50px" alt="user-image">
+            </div>
+            <div class="card-header d-flex flex-row" >
+                <a href="{{p.get_absolute_url_post}}"><h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4></a>
+                <hr>
+                <p class="lead">
+                  by
+                  {%if p.anonymous%}
+                    <span class="text-muted"Anonymous</span>
+                  {%else%}
+                    <a href="{{p.get_absolute_url_user}}">{{ p.user }}</a>
+                  {%endif%}
+                </p>
+
                 <div>
-                    <h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4>
                     <p class="card-text"><i class="far fa-clock pr-2"></i>{{ p.time }}</p>
                 </div>
             </div>
@@ -97,7 +189,7 @@
               {%if p.anonymous%}
                 <span class="text-muted">Anonymous</span>
               {%else%}
-                <a href="{{p.get_absolute_url}}">{{ p.user }}</a>
+                <a href="{{p.get_absolute_url_user}}">{{ p.user }}</a>
               {%endif%}
                 <span class="time-right">{{ p.time }}</span>
             </div>

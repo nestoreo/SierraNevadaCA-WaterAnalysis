@@ -1,0 +1,89 @@
+{% extends "midd19/layout.html" %}
+{% load static %}
+{% block body %}
+<style>
+
+    .checkbox_style{
+        color: white
+    }
+</style>
+
+
+<div class=" container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Title -->
+                    <h1 class="mt-4"><a href="{{p.get_absolute_url_post}}"style="color:black">{{ post.title }}</a></h1>
+                    <!-- Author -->
+                    <p class="lead">
+                        by
+                        {%if post.anonymous%}
+                        <span class="text-muted"Anonymous</span>
+                            {%else%}
+                            <a href="{{p.get_absolute_url_user}}" style="color:black">{{ post.user }}</a>
+                            {%endif%}
+                        </p>
+                        <hr>
+                        <!-- Date/Time -->
+                        <p>Posted on {{ post.time }}</p>
+                        <hr>
+                        <!-- Post Content -->
+                        <p class="text-justify">{{ post.content }}</p>
+                        <hr class="my-2">
+                        <!-- like/dislike buttons-->
+                        <div class="d-flex justify-content-around">
+                            <button type="submit" class="btn btn-dark btn-block"><i class="fas fa-thumbs-up fa-lg "></i> like</button>
+                            <button type="submit" class="btn btn-dark w-100"><i class="fas fa-thumbs-down fa-lg "></i> Dislike </button>
+                        </div>
+                        <hr class="mt-2">
+                        <!-- Single Comment -->
+                        {%for comment in comments%}
+                        <div class="media mb-4">
+                            <!-- user img-->
+                            <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
+                            <div class="media-body">
+
+                                <h5 class="mt-0">by {%if comment.anonymous%}
+                                    Anonymous
+                                    {%else%}
+                                    <a href="{{comment.get_absolute_url_user}}" style="color: black">{{comment.user.username}}</a>
+                                    {%endif%}<small>{{comment.time}}</small></h5>
+                                    {{comment.comment}}
+                            </div>
+                        </div>
+                        {%endfor%}
+
+                        <!-- Comments Form -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form action="{%url "post_view" post.user.username post.id%}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <div class="d-flex">
+                                            <!--user image-->
+                                            <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
+
+                                            {%for field in form%}
+                                            {{field}}
+                                            {%endfor%}
+                                            <p >Anonymous</p>
+
+                                            <div class="button-container">
+                                                <button type="submit" class="btn btn-dark">Comment</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+        {% endblock %}
