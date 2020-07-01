@@ -153,8 +153,9 @@ nav{
   background-color: transparent;
   border-top: 5px;
   padding-top: 15px;
-  position: absolute;
-  width: 100%
+  position: sticky;
+  width: 100%;
+  margin-bottom: 27px;
 }
 
 
