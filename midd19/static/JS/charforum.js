@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('like_button').on(click) function(){
+    $('like_button').on("click", function(){
         let user_id = $(this).attr('user_id')
         let preference = $(this).attr('like')
         $.ajax({
