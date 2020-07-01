@@ -52,14 +52,20 @@ def login_view(request):
     else:
         return render(request, "midd19/login.html", {"message":"Invalid credentials"})
 
+
+
 def logout_view(request):
       logout(request)
       return render(request, "midd19/login.html", {"message": "Logged out."})
+
+
 
 def user_view(request, username):
     user = User.objects.get(username=username)
     user_posts=Post.objects.filter(user=user)
     return render(request, "midd19/user_view.html",{"posts":user_posts,"user":user})
+
+
 
 def register(request):
     if request.method == 'POST':
@@ -74,6 +80,8 @@ def register(request):
     else:
         form = SignUpForm()
     return render(request, 'midd19/register.html', {'form': form})
+
+
 
 def post_view(request,username,post_id):
     #post working with
@@ -95,6 +103,11 @@ def post_view(request,username,post_id):
     else:
         form=CommentForm()
     return render(request, "midd19/post_view.html", {"post":user_post,"form":form,"comments":comments})
+
+
+def like_dislike(request):
+    if request.method == 'POST':
+        user_id = request.POST("user_id")
 
 
 #
