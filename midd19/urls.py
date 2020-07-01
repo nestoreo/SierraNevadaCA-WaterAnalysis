@@ -9,7 +9,7 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("chatforum", views.chatforum, name="chatforum"),
     path("user/<username>", views.user_view, name="user_view"),
-    path("user/<username>/<int:post_id>",views.post_view,name="post_view")
+    path("user/<username>/<int:post_id>",views.post_view,name="post_view"),
     path("like_dislike", views.like_dislike, name="like_dislike"),
 
 ]
