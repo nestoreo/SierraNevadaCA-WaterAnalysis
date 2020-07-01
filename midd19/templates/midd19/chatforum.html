@@ -124,17 +124,8 @@
                     <hr class="my-2">
                     <!-- like/dislike buttons-->
                     <div class="d-flex justify-content-around">
-
-                        <form id="like_form">
-                            <input type="hidden" id="like_input" value="{{p.id}}">
-                            <button type="submit" class="btn btn-dark btn-block like_button"><i class="fas fa-thumbs-up fa-lg "></i> like</button>
-                        </form>
-                        <form id="dislike_form">
-                            <input type="hidden" name="dislike_input" value="{{p.id}}">
-                            <button type="submit" class="btn btn-dark w-100 dislike_button"><i class="fas fa-thumbs-down fa-lg "></i> Dislike </button>
-                        </form>
-
-
+                            <button type="submit" class="btn btn-dark btn-block like_button" user_id="{{p.user.id}}" like="1" ><i class="fas fa-thumbs-up fa-lg "></i> like</button>
+                            <button type="submit" class="btn btn-dark w-100 like_button" user_id="{{p.user.id}}" like="0"><i class="fas fa-thumbs-down fa-lg "></i> Dislike </button>
                     </div>
                     <hr class="mt-2">
                     <!-- Single Comment -->
