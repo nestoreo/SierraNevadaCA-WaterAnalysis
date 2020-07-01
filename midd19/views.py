@@ -108,6 +108,7 @@ def post_view(request,username,post_id):
 def like_dislike(request):
     if request.method == 'POST':
         user_id = request.POST("user_id")
+        preference = request.POST("preference")
 
 
 #
