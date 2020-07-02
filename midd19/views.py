@@ -7,7 +7,6 @@ from .forms import SignUpForm,PostForm, CommentForm
 from .models import Post, Comment
 from django.contrib.auth.models import User
 
-
 #create views
 def index(request):
     if not request.user.is_authenticated:
@@ -36,9 +35,6 @@ def chatforum(request):
     else:
         form = PostForm()
     return render(request,'midd19/chatforum.html',{'form':form, "posts": posts, "most_liked": most_liked, "least_liked": least_liked})
-
-
-
 
 
 
@@ -110,7 +106,9 @@ def like_dislike(request):
         user_id = request.POST("user_id")
         preference = request.POST("preference")
 
-
+#redirecting to restaurants
+def food_orders(request):
+    return render(request, "midd19/food_orders.html")
 #
 #def post(request):
 #    if request.method =="POST":
