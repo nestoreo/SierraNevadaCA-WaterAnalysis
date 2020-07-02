@@ -35,6 +35,8 @@
                         <hr>
                         <!-- Post Content -->
                         <p class="text-justify post-text">{{ post.content }}</p>
+                        <p>Comments: {{ post.comment_count }}</p>
+
                         <hr class="my-2">
                         <!-- like/dislike buttons-->
                         <div class="d-flex justify-content-around">
@@ -53,7 +55,7 @@
                                 <h5 class="mt-0">by {%if comment.anonymous%}
                                     Anonymous
                                     {%else%}
-                                    <a href="{{comment.get_absolute_url_user}}" style="color: black">{{comment.user.username}}</a>
+                                    <a href="{{comment.get_absolute_url_user}}">{{comment.user.username}}</a>
                                     {%endif%}<small>{{comment.time}}</small></h5>
                                     {{comment.comment}}
                             </div>
@@ -72,10 +74,11 @@
                                             <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
 
                                             {{form.comment}}
-                                            {{form.anonymous}}
-                                            <input type="hidden" id="prime" name="prime" value="{{ post.id }}">
+                                            {{form.anonymous.label_tag}}
+                                            <input class="checkbox_style" type="checkbox" id="anonymous" name="anonymous" >
 
-                                            <p >Anonymous</p>
+                                            <input type="hidden" id="postid" name="postid" value="{{ post.id }}">
+
                                             <div id="results"></div>
                                             <div class="button-container">
                                                 <button type="submit" value="Post" class="btn btn-dark">Comment</button>

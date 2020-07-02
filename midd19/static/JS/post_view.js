@@ -2,32 +2,25 @@ $(document).ready(function()
   {console.log('ready')
   $('#comment_form').on('submit', function(event){
       event.preventDefault();
-      console.log("form submitted!")  // sanity check
+
       post_view();
   });
   })
 
   function post_view() {
-      console.log("create post is working!") // sanity check
       $.ajax({
         url : "comment", // the endpoint
         type : "POST", // http method
         data : { comment : $('#comment').val(),
-                 anonymous : $('#anonymous').val(),
-                 prime:$("#prime").val()}, // data sent with the post request
-
+                 anonymous : $("#anonymous").prop('checked'),
+                 postid:$("#postid").val()}, // data sent with the post request
         // handle a successful response
         success : function(json) {
-            $('#comment').val(''); // remove the value from the input
-            $('#comment').val('');
-            console.log(json); // log the returned json to the console
-            console.log("success"); // another sanity check
-
             document.getElementById("comment_form").reset();
-            $("#comment_display").prepend(
+            $("#comment_display").append(
             '<div class="media mb-4">'+
                 '<div class="media-body">'+
-                    '<h5 class="mt-0">'+json.user+
+                    '<h5 class="mt-0">'+"by "+"<a href="+json.link +">"+json.user+"</a>"+
                       '<small>'+json.time+'</small>'+'</h5>'+
                       json.text+
                 '</div>'+
@@ -42,7 +35,6 @@ $(document).ready(function()
         }
 });
 };
-
 
 $(function() {
     // This function gets cookie with a given name

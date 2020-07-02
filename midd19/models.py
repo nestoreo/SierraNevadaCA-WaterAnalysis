@@ -31,11 +31,11 @@ class Comment(models.Model):
 
     #automatic
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    postid=models.IntegerField(null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     likes=models.IntegerField(default=0)
     dislikes=models.IntegerField(default=0)
     time=models.DateTimeField(auto_now_add=True)
-    prime=models.IntegerField(null=True)
 
 
     def get_absolute_url_user(self):

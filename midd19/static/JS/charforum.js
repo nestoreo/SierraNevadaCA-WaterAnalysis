@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*$(document).ready(function() {
     $(document).on('submit',"#like_form", function(){
 =======

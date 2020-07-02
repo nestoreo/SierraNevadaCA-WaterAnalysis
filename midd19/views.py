@@ -82,38 +82,34 @@ def register(request):
 def post_view(request,username,post_id):
     #post working with
     user_post=Post.objects.get(id=post_id)
-
     #comments on user_post
-    comments=user_post.comment_set.all().order_by("-time")
-
+    comments=user_post.comment_set.all()
     form=CommentForm()
     return render(request, "midd19/post_view.html", {"post":user_post,"form":form,"comments":comments})
 
 def comment(request,username):
     if request.method == 'POST':
         form=CommentForm(request.POST)
-        print("hi")
         if form.is_valid():
-            print("hi")
             content=form.cleaned_data.get("comment")
             anonymous=form.cleaned_data.get("anonymous")
-            post_id=form.cleaned_data.get("prime")
+            post_id=form.cleaned_data.get("postid")
             user_post=Post.objects.get(id=int(post_id))
-
             comment=Comment(comment=content,anonymous=anonymous,post=user_post,user=request.user)
             comment.save()
+            
             user_post.comment_count+=1
             user_post.save()
 
             response_data = {}
-            response_data['result'] = 'Create post successful!'
             response_data['text'] = comment.comment
-            response_data['time']=comment.time
-            print(comment.anonymous)
+            response_data['time']=comment.time.strftime(" %B %d, %Y - %I:%M %p")
             if comment.anonymous:
                 response_data['user'] = "Anonymous"
+                response_data['link']="#"
             else:
                 response_data['user'] = request.user.username
+                response_data['link'] = comment.get_absolute_url_user()
 
             return JsonResponse(response_data)
 
@@ -127,18 +123,3 @@ def like_dislike(request):
 #redirecting to restaurants
 def food_orders(request):
     return render(request, "midd19/food_orders.html")
-#
-#def post(request):
-#    if request.method =="POST":
-#        form=PostForm(request.POST)
-#        if form.is_valid():
-#            title = form.cleaned_data.get("title")
-#            content = form.cleaned_data.get('content')
-#            anonymous = form.cleaned_data.get('anonymous')
-#            username = request.user
-#            post = Post(title=title,content=content,anonymous=anonymous,user=request.user)
-#            post.save()
-#            return HttpResponseRedirect(reverse("chatforum"))
-#    else:
-#        form = PostForm()
-#    return render(request,'midd19/chatforum.html',{'form':form})
