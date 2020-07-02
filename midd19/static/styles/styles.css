@@ -3,16 +3,64 @@
 
 /*chat Chatforum starts here--------------------------------------------------*/
 
+.background-div {
+  background-image: url("/static/images/webb.png");
+  background-repeat: repeat;
+}
 .collapse-content .fa.fa-heart:hover {
   color: #f44336 !important;
 }
 .collapse-content .fa.fa-share-alt:hover {
   color: #0d47a1 !important;
 }
-/* for some reason my styling didn't work unless I had them add as a style tag.
-For content team, please try and see if you can fix this,its not a priority, you
-can also ignore it.
 
+.box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border:1px solid blue;
+  width:100%;
+  margin:5px 0;
+  padding:3px;
+  background-color: white;
+}
+
+.like-dislike {
+  background-color: #e8e8e8;
+}
+.post-time {
+  color: #003f7a !important;
+}
+.post-cards {
+  background-color: #32393e;
+}
+/* if there is time, style the most liked / most disliked button so that all
+text is on one line.
+*/
+#post-form {
+  background-color: #bfd4e3;
+}
+.main-post {
+  background-color: #e0f2ff;
+}
+.post-text {
+  background-color: white;
+  padding: 10px 3px 10px 3px;
+}
+
+.user-info {
+  color: #00125c;
+  padding-left: 20px;
+}
+
+.userview-card {
+  background-color: #e0f2ff;
+  border-color: black;
+}
+.card-text {
+  color: black;
+}
+/*
 Please check if you can style the feutured post in a way where odd cards has
 different color than even cards.
 /*chat forum ends here--------------------------------------------------------*/

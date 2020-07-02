@@ -19,52 +19,52 @@
 
 
 <!--**********************liked/unliked posts area***************************-->
-<div id="carouselExampleControls" class="carousel slide carousel-fade" >
+<div id="carouselExampleControls" class="carousel slide carousel-fade">
     <div class="carousel-inner">
         <!--**************************liked posts****************************-->
         <div class="carousel-item active most_liked">
             <div class="card-group" id="mostlikedcards">
                 {%for p in most_liked%}
-                <div class="card text-white bg-dark mb-3">
+                <div class="card text-black mb-3 like-dislike">
                     <div class="card-body">
-                        <a href="{{p.get_absolute_url_post}}"><h5 class="card-title">{{ p.title }}</h5></a>
+                        <a href="{{p.get_absolute_url_post}}" class="text-info"><h5 class="card-title">{{ p.title }}</h5></a>
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="{{p.get_absolute_url_user}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url_user}}" class="text-info"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
                         <p class="card-text">{{ p.content }}</p>
-                        <a href="#" class="card-link">countinue reading</a>
+                        <a href="#" class="card-link text-info">countinue reading</a>
                     </div>
                     <div class="card-footer">
-                        <span class="time-right">{{ p.time }}</span>
+                        <span class="time-right post-time">{{ p.time }}</span>
                     </div>
                 </div>
                 {%endfor%}
-                <button type="button" class="btn btn-primary" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)">Most unliked</p></button>
+                <button type="button" class="btn like-dislike-btn" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)">Most unliked</p></button>
             </div>
         </div>
         <!--*************************unliked posts***************************-->
         <div class="carousel-item most_disliked">
             <div class="card-group" id="mostunlikedcards">
                 {%for p in least_liked%}
-                <div class="card text-white bg-dark mb-3">
+                <div class="card text-black mb-3 like-dislike">
                     <div class="card-body">
-                        <a href="{{p.get_absolute_url_post}}"><h5 class="card-title">{{ p.title }}</h5></a>
+                        <a href="{{p.get_absolute_url_post}}" class="text-info"><h5 class="card-title">{{ p.title }}</h5></a>
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="{{p.get_absolute_url_user}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url_user}}" class="text-info"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
                         <p class="card-text">{{ p.content }}</p>
-                        <a href="#" class="card-link">countinue reading</a>
+                        <a href="#" class="card-link text-info">countinue reading</a>
                     </div>
                     <div class="card-footer">
-                        <span class="time-right">{{ p.time }}</span>
+                        <span class="time-right post-time">{{ p.time }}</span>
                     </div>
                 </div>
                 {%endfor%}
-                <button type="button" class="btn btn-primary" id="test" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)">Most liked</p></button>
+                <button type="button" class="btn btn-primary" id="test" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)" class="like-dislike-btn">Most liked</p></button>
             </div>
         </div>
     </div>
@@ -72,9 +72,10 @@
 </div>
 
 <!--***************************post form*************************************-->
-<div class="container-fluid"">
+<div class="container-fluid" id="post-form">
     <div class="row justify-content-center">
         <div class="col-lg-8 align-self-center">
+            <br>
             <form action="{%url 'chatforum'%}" method="POST">
               {% csrf_token %}
               {%for field in form%}
@@ -83,7 +84,7 @@
               {%endfor%}
               <div class="button-container">
                 <button style="background-color:gray" type="submit" class="btn">Post</button>
-              </div>
+              </div><br>
             </form>
 
         </div>
@@ -95,10 +96,10 @@
 
 <!--**************************posts area***************************************-->
 {% for p in posts %}
-<div class=" container-fluid">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-8 align-self-center">
-            <div class="card mt-4 border-dark ">
+            <div class="card mt-4 border-dark main-post">
                 <div class="card-body py-0">
 
 
@@ -118,7 +119,7 @@
                     <p>Posted on {{ p.time }}</p>
                     <hr>
                     <!-- Post Content -->
-                    <p class="text-justify">{{ p.content }}</p>
+                    <p class="text-justify post-text">{{ p.content }}</p>
                     <hr class="my-2">
                     <!-- like/dislike buttons-->
                     <div class="d-flex justify-content-around">
@@ -153,7 +154,7 @@
             </div>
         </div>
     </div>
-</div>
+</div><br>
 
 {%endfor%}
 
@@ -233,4 +234,5 @@
 
         </div>
     </div>
+</div>
 </div>
