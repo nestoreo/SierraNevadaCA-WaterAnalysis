@@ -1,14 +1,15 @@
 {% extends "midd19/layout.html" %}
 {% load static %}
 {% block body %}
-<p>
-<h1><a href="{{p.get_absolute_url}}">User: {{user.username}}</a></h1>
-<h1><a href="mailto:{{user.email}}">Email: {{user.email}}</a></h1>
-</p>
+<div class="background-div">
+<div>
+<h1 class="user-info">User: <a href="{{p.get_absolute_url}}">{{user.username}}</a></h1>
+<h1 class="user-info">Email: <a href="mailto:{{user.email}}">{{user.email}}</a></h1>
+</div>
 <div class="row row-cols-1 row-cols-md-3 col-12">
     {% for p in posts %}
     <div class="col mb-4">
-        <div class="card text-white bg-dark h-100  ">
+        <div class="card text-white userview-card h-100  ">
             <div class="card-header d-flex flex-row" >
                 <img src="{% static "images/MIDD-19.png" %}" class="rounded-circle mr-3" height="50px" width="50px" alt="user-image">
                 <div>
@@ -16,16 +17,17 @@
                 </div>
             </div>
             <div class="card-body" >
-                <p class="card-text">{{ p.content }}</p>
+                <p class="card-text text-black">{{ p.content }}</p>
                 <a href="#" class="card-link">countinue reading</a>
             </div>
             <div class="card-footer " >
               <a href="{{p.get_absolute_url}}">{{ p.user }}</a>
-              <span class="time-right">{{ p.time }}</span>
+              <span class="time-right post-time">{{ p.time }}</span>
             </div>
 
         </div>
     </div>
     {% endfor %}
-
+</div>
+</div>
 {% endblock %}

@@ -5,44 +5,32 @@
 {% block title %} Chatforum{% endblock %}
 
 {% block body %}
-<style>
-  .box {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    border:1px solid blue;
-    width:100%;
-    margin:5px 0;
-    padding:3px;
-}
-  </style>
 
-
-
+<div class="background-div">
 <!--**********************liked/unliked posts area***************************-->
-<div id="carouselExampleControls" class="carousel slide carousel-fade" >
+<div id="carouselExampleControls" class="carousel slide carousel-fade">
     <div class="carousel-inner">
         <!--**************************liked posts****************************-->
         <div class="carousel-item active most_liked">
             <div class="card-group" id="mostlikedcards">
                 {%for p in most_liked%}
-                <div class="card text-white bg-dark mb-3">
+                <div class="card text-black mb-3 like-dislike">
                     <div class="card-body">
-                        <a href="{{p.get_absolute_url_post}}"><h5 class="card-title">{{ p.title }}</h5></a>
+                        <a href="{{p.get_absolute_url_post}}" class="text-info"><h5 class="card-title">{{ p.title }}</h5></a>
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="{{p.get_absolute_url_user}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url_user}}" class="text-info"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
                         <p class="card-text">{{ p.content }}</p>
-                        <a href="#" class="card-link">countinue reading</a>
+                        <a href="#" class="card-link text-info">countinue reading</a>
                     </div>
                     <div class="card-footer">
-                        <span class="time-right">{{ p.time }}</span>
+                        <span class="time-right post-time">{{ p.time }}</span>
                     </div>
                 </div>
                 {%endfor%}
-                <button type="button" class="btn btn-primary" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)">Most unliked</p></button>
+                <button type="button" class="btn like-dislike-btn" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)">Most unliked</p></button>
             </div>
 
         </div>
@@ -50,23 +38,23 @@
         <div class="carousel-item most_disliked">
             <div class="card-group" id="mostunlikedcards">
                 {%for p in least_liked%}
-                <div class="card text-white bg-dark mb-3">
+                <div class="card text-black mb-3 like-dislike">
                     <div class="card-body">
-                        <a href="{{p.get_absolute_url_post}}"><h5 class="card-title">{{ p.title }}</h5></a>
+                        <a href="{{p.get_absolute_url_post}}" class="text-info"><h5 class="card-title">{{ p.title }}</h5></a>
                         {%if p.anonymous%}
                           <h6 class="card-subtitle mb-2 text-muted">Anonymous</h6>
                         {%else%}
-                          <a href="{{p.get_absolute_url_user}}"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
+                          <a href="{{p.get_absolute_url_user}}" class="text-info"><h6 class="card-subtitle mb-2">{{ p.user }}</h6></a>
                         {%endif%}
                         <p class="card-text">{{ p.content }}</p>
-                        <a href="#" class="card-link">countinue reading</a>
+                        <a href="#" class="card-link text-info">countinue reading</a>
                     </div>
                     <div class="card-footer">
-                        <span class="time-right">{{ p.time }}</span>
+                        <span class="time-right post-time">{{ p.time }}</span>
                     </div>
                 </div>
                 {%endfor%}
-                <button type="button" class="btn btn-primary" id="test" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)">Most liked</p></button>
+                <button type="button" class="btn btn-primary" id="test" style="margin-bottom: 15px; width: 80px; background-color: darkblue; border: 0px"><p style="transform: rotate(270deg)" class="like-dislike-btn">Most liked</p></button>
             </div>
         </div>
     </div>
@@ -74,9 +62,10 @@
 </div>
 
 <!--***************************post form*************************************-->
-<div class="container-fluid"">
+<div class="container-fluid" id="post-form">
     <div class="row justify-content-center">
         <div class="col-lg-8 align-self-center">
+            <br>
             <form action="{%url 'chatforum'%}" method="POST">
               {% csrf_token %}
               {%for field in form%}
@@ -85,7 +74,7 @@
               {%endfor%}
               <div class="button-container">
                 <button style="background-color:gray" type="submit" class="btn">Post</button>
-              </div>
+              </div><br>
             </form>
 
         </div>
@@ -97,10 +86,10 @@
 
 <!--**************************posts area***************************************-->
 {% for p in posts %}
-<div class=" container-fluid">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-8 align-self-center">
-            <div class="card mt-4 border-dark ">
+            <div class="card mt-4 border-dark main-post">
                 <div class="card-body py-0">
                     <script src="{% static "JS/charforum.js" %}"></script>
 
@@ -120,7 +109,7 @@
                     <p>Posted on {{ p.time }}</p>
                     <hr>
                     <!-- Post Content -->
-                    <p class="text-justify">{{ p.content }}</p>
+                    <p class="text-justify post-text">{{ p.content }}</p>
                     <hr class="my-2">
                     <!-- like/dislike buttons-->
                     <div class="d-flex justify-content-around">
@@ -155,52 +144,9 @@
             </div>
         </div>
     </div>
-</div>
+</div><br>
 
 {%endfor%}
-
-
-<div class="row row-cols-1 row-cols-md-3 col-12">
-
-    {% for p in posts %}
-    <div class="col mb-4">
-        <div class="card text-white bg-dark h-100  ">
-            <div class="card-header d-flex flex-row" >
-                <img src="{% static "images/MIDD-19.png" %}" class="rounded-circle mx-auto d-block mr-3" height="50px" width="50px" alt="user-image">
-            </div>
-            <div class="card-header d-flex flex-row" >
-                <a href="{{p.get_absolute_url_post}}"><h4 class="card-title font-weight-bold mb-2">{{ p.title }}</h4></a>
-                <hr>
-                <p class="lead">
-                  by
-                  {%if p.anonymous%}
-                    <span class="text-muted"Anonymous</span>
-                  {%else%}
-                    <a href="{{p.get_absolute_url_user}}">{{ p.user }}</a>
-                  {%endif%}
-                </p>
-
-                <div>
-                    <p class="card-text"><i class="far fa-clock pr-2"></i>{{ p.time }}</p>
-                </div>
-            </div>
-            <div class="card-body" >
-                <p class="card-text">{{ p.content }}</p>
-                <a href="#" class="card-link">countinue reading</a>
-            </div>
-            <div class="card-footer " >
-              {%if p.anonymous%}
-                <span class="text-muted">Anonymous</span>
-              {%else%}
-                <a href="{{p.get_absolute_url_user}}">{{ p.user }}</a>
-              {%endif%}
-                <span class="time-right">{{ p.time }}</span>
-            </div>
-
-        </div>
-    </div>
-    {% endfor %}
-</div>
 
 {% endblock %}
 
@@ -232,4 +178,5 @@
 
         </div>
     </div>
+</div>
 </div>
