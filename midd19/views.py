@@ -126,6 +126,7 @@ def comment(request,username):
 def like_dislike(request):
     if request.method == 'POST':
         user_id = request.POST("user_id")
+        preference = request.POST("preference")
 
 
 
