@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
     $(document).on('submit',"#like_form", function(){
         $.ajax({
             type: "POST",
@@ -7,11 +7,9 @@ $(document).ready(function() {
                 user_id: $('#like_input').val,
             }
             sucess: function(){
-                
+
             }
         });
-
-
-
     });
 });
+*/

@@ -1,6 +1,10 @@
 {% extends "midd19/layout.html" %}
+{% block heading %}
 {% load static %}
+<script type="text/javascript" src="{%static "JS/post_view.js"%}"></script>
+ {% endblock %}
 {% block body %}
+
 <style>
 
     .checkbox_style{
@@ -39,6 +43,7 @@
                         </div>
                         <hr class="mt-2">
                         <!-- Single Comment -->
+                        <div id="comment_display">
                         {%for comment in comments%}
                         <div class="media mb-4">
                             <!-- user img-->
@@ -54,24 +59,26 @@
                             </div>
                         </div>
                         {%endfor%}
+                        </div>
 
                         <!-- Comments Form -->
                         <div class="card mb-4">
                             <div class="card-body">
-                                <form action="{%url "post_view" post.user.username post.id%}" method="POST">
+                                <form id="comment_form" method="POST">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <div class="d-flex">
                                             <!--user image-->
                                             <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
 
-                                            {%for field in form%}
-                                            {{field}}
-                                            {%endfor%}
-                                            <p >Anonymous</p>
+                                            {{form.comment}}
+                                            {{form.anonymous}}
+                                            <input type="hidden" id="prime" name="prime" value="{{ post.id }}">
 
+                                            <p >Anonymous</p>
+                                            <div id="results"></div>
                                             <div class="button-container">
-                                                <button type="submit" class="btn btn-dark">Comment</button>
+                                                <button type="submit" value="Post" class="btn btn-dark">Comment</button>
                                             </div>
                                         </div>
                                     </div>
