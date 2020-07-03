@@ -12,11 +12,11 @@
     }
 </style>
 
-
+<div class="background-div">
 <div class=" container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-10 align-self-center">
-            <div class="card">
+            <div class="card mt-4 border-dark main-post">
                 <div class="card-body">
                     <!-- Title -->
                     <h1 class="mt-4"><a href="{{post.get_absolute_url_post}}"style="color:black">{{ post.title }}</a></h1>
@@ -34,7 +34,9 @@
                         <p>Posted on {{ post.time }}</p>
                         <hr>
                         <!-- Post Content -->
-                        <p class="text-justify">{{ post.content }}</p>
+                        <p class="text-justify post-text">{{ post.content }}</p>
+                        <p>Comments: {{ post.comment_count }}</p>
+
                         <hr class="my-2">
                         <!-- like/dislike buttons-->
                         <div class="d-flex justify-content-around">
@@ -53,7 +55,7 @@
                                 <h5 class="mt-0">by {%if comment.anonymous%}
                                     Anonymous
                                     {%else%}
-                                    <a href="{{comment.get_absolute_url_user}}" style="color: black">{{comment.user.username}}</a>
+                                    <a href="{{comment.get_absolute_url_user}}">{{comment.user.username}}</a>
                                     {%endif%}<small>{{comment.time}}</small></h5>
                                     {{comment.comment}}
                             </div>
@@ -71,9 +73,17 @@
                                             <!--user image-->
                                             <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
                                             {{form.comment}}
+<<<<<<< HEAD
                                             {{form.anonymous}}
                                             <input type="hidden" id="p_id" name="p_id" value="{{ post.id }}">
                                             <p >Anonymous</p>
+=======
+                                            {{form.anonymous.label_tag}}
+                                            <input class="checkbox_style" type="checkbox" id="anonymous" name="anonymous" >
+
+                                            <input type="hidden" id="postid" name="postid" value="{{ post.id }}">
+
+>>>>>>> 4a1266c35874ccb6908d0c0a9bbcd7d8b616e335
                                             <div id="results"></div>
                                             <div class="button-container">
                                                 <button type="submit" value="Post" class="btn btn-dark">Comment</button>
@@ -87,6 +97,7 @@
                 </div>
             </div>
         </div>
+</div><br>
 </div>
 
 

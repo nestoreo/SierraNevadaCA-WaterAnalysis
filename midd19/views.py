@@ -7,7 +7,6 @@ from .forms import SignUpForm,PostForm, CommentForm
 from .models import Post, Comment
 from django.contrib.auth.models import User
 
-
 #create views
 def index(request):
     if not request.user.is_authenticated:
@@ -37,9 +36,6 @@ def chatforum(request):
         form = PostForm()
     comment_form = CommentForm()
     return render(request,'midd19/chatforum.html',{'form':form, 'comment_form': comment_form, "posts": posts, "most_liked": most_liked, "least_liked": least_liked})
-
-
-
 
 def login_view(request):
     username = request.POST.get("username")
@@ -84,12 +80,10 @@ def register(request):
 
 def post_view(request, post_id):
     #post working with
-    user_post = Post.objects.get(id=post_id)
-
+    user_post=Post.objects.get(id=post_id)
     #comments on user_post
-    comments = user_post.comment_set.all().order_by("-time")
-
-    form = CommentForm()
+    comments=user_post.comment_set.all()
+    form=CommentForm()
     return render(request, "midd19/post_view.html", {"post":user_post,"form":form,"comments":comments})
 
 def comment(request):
@@ -107,14 +101,14 @@ def comment(request):
             user_post.save()
 
             response_data = {}
-            response_data['result'] = 'Create post successful!'
             response_data['text'] = comment.comment
-            response_data['time'] = comment.time
-            print(comment.anonymous)
+            response_data['time']=comment.time.strftime(" %B %d, %Y - %I:%M %p")
             if comment.anonymous:
                 response_data['user'] = "Anonymous"
+                response_data['link']="#"
             else:
                 response_data['user'] = request.user.username
+                response_data['link'] = comment.get_absolute_url_user()
 
             return JsonResponse(response_data)
 
@@ -125,21 +119,6 @@ def like_dislike(request):
         user_id = request.POST("user_id")
         preference = request.POST("preference")
 
-
-
-
-#
-#def post(request):
-#    if request.method =="POST":
-#        form=PostForm(request.POST)
-#        if form.is_valid():
-#            title = form.cleaned_data.get("title")
-#            content = form.cleaned_data.get('content')
-#            anonymous = form.cleaned_data.get('anonymous')
-#            username = request.user
-#            post = Post(title=title,content=content,anonymous=anonymous,user=request.user)
-#            post.save()
-#            return HttpResponseRedirect(reverse("chatforum"))
-#    else:
-#        form = PostForm()
-#    return render(request,'midd19/chatforum.html',{'form':form})
+#redirecting to restaurants
+def food_orders(request):
+    return render(request, "midd19/food_orders.html")
