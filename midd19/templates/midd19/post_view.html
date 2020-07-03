@@ -70,11 +70,9 @@
                                         <div class="d-flex">
                                             <!--user image-->
                                             <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
-
                                             {{form.comment}}
                                             {{form.anonymous}}
-                                            <input type="hidden" id="prime" name="prime" value="{{ post.id }}">
-
+                                            <input type="hidden" id="p_id" name="p_id" value="{{ post.id }}">
                                             <p >Anonymous</p>
                                             <div id="results"></div>
                                             <div class="button-container">

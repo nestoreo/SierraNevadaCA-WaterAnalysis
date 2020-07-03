@@ -21,7 +21,7 @@ class Post(models.Model):
         return f"/user/{self.user.username}"
 
     def get_absolute_url_post(self):
-        return f"/user/{self.user.username}/{self.id}"
+        return f"/{self.id}"
 
 
 class Comment(models.Model):
@@ -32,10 +32,10 @@ class Comment(models.Model):
     #automatic
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes=models.IntegerField(default=0)
-    dislikes=models.IntegerField(default=0)
-    time=models.DateTimeField(auto_now_add=True)
-    prime=models.IntegerField(null=True)
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+    time = models.DateTimeField(auto_now_add=True)
+    p_id = models.IntegerField(null=True)
 
 
     def get_absolute_url_user(self):

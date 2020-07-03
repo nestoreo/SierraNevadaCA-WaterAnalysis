@@ -12,14 +12,14 @@ $(document).ready(function()
       $.ajax({
         url : "comment", // the endpoint
         type : "POST", // http method
-        data : { comment : $('#comment').val(),
-                 anonymous : $('#anonymous').val(),
-                 prime:$("#prime").val()}, // data sent with the post request
+        data : { comment : $('.comment').val(),
+                 anonymous : $('.anonymous').val(),
+                 p_id:$("#p_id").val()}, // data sent with the post request
 
         // handle a successful response
         success : function(json) {
-            $('#comment').val(''); // remove the value from the input
-            $('#comment').val('');
+            $('.comment').val(''); // remove the value from the input
+            $('.comment').val('');
             console.log(json); // log the returned json to the console
             console.log("success"); // another sanity check
 

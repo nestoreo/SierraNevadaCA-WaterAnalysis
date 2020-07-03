@@ -127,7 +127,7 @@
                     </div>
                     <hr class="mt-2">
                     <!-- Single Comment -->
-                    <div class="media mb-4">
+                    <div class="media mb-4 comment_display">
                         <!-- user img-->
                       <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
                       <div class="media-body">
@@ -138,15 +138,23 @@
                     <!-- Comments Form -->
                     <div class="card  mb-4">
                       <div class="card-body">
-                        <form class="comment_form">
-                            <div class="form-group">
-                                <div class="d-flex">
-                                    <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
-                                    <textarea placeholder="Write a comment..."class="form-control" rows="1"></textarea>
-                                    <button type="submit" class="btn btn-dark">Comment</button>
-                                </div>
-                            </div>
-                        </form>
+                          <form class="comment_form" method="POST">
+                              {% csrf_token %}
+                              <div class="form-group">
+                                  <div class="d-flex">
+                                      <!--user image-->
+                                      <img class="d-flex mr-3 rounded-circle" src="{% static "images/MIDD-19.png" %}" height="50px" width="50px" alt="user-image">
+                                      {{comment_form.comment}}
+                                      {{comment_form.anonymous}}
+                                      <input type="hidden" class="p_id" name="p_id" value="{{ p.id }}">
+                                      <p >Anonymous</p>
+                                      <div class="results"></div>
+                                      <div class="button-container">
+                                          <button type="submit" value="Post" class="btn btn-dark">Comment</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
                       </div>
                     </div>
                 </div>
