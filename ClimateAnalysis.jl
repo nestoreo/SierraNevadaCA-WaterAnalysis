@@ -15,7 +15,6 @@ lats = g.(lats)
 longs = f.(longs)
 
 
-
 snowd = Dict{String, Array{Float32}}()
 airT = Dict{String, Array{Float32}}()
 precip = Dict{String, Array{Float32}}()
@@ -25,64 +24,41 @@ for i=1981:2015
     for j=1:length(lats)
         key = "y$(i)pack$(j)"
         snowd[key] = zeros(Float32, 365)
+        airT[key] = zeros(Float32, 365)
+        precip[key] = zeros(Float32, 365)
 
         for z=1:length(lats[j])
             
             curr = ncread("./Data/snod.$(i).nc", "snod")[longs[j][z],:,:][lats[j][z],:][1:365]
             curr[curr.<=0] .= 0
             snowd[key] = snowd[key] .+ curr
-        end
-        snowd[key] = snowd[key] ./ length(lats[j])
-    end
-    print("\r                                       ")
-    print("\rProcessing Snow Depth: $(round((i-1980)/0.35;digits=2))% complete ")
-end
 
-
-
-
-
-for i=1981:2015
-    for j=1:length(lats)
-        key = "y$(i)pack$(j)"
-        airT[key] = zeros(Float32, 365)
-
-        for z=1:length(lats[j])
-            
             curr = ncread("./Data/air.sig995.$(i).nc", "air")[longs[j][z],:,:][lats[j][z],:][1:365]
             curr[curr.<=0] .= 0
             curr = (curr .- 273.15) .* (9/5) .+ 32
             airT[key] = airT[key] .+ curr
-        end
-        airT[key] = airT[key] ./ length(lats[j])
-    end
-    print("\r                                       ")
-    print("\rProcessing Air Temp: $(round((i-1980)/0.35;digits=2))% complete ")
-end
 
-
-
-
-
-for i=1981:2015
-    for j=1:length(lats)
-        key = "y$(i)pack$(j)"
-        precip[key] = zeros(Float32, 365)
-
-        for z=1:length(lats[j])
-            
             curr = ncread("./Data/apcp.$(i).nc", "apcp")[longs[j][z],:,:][lats[j][z],:][1:365]
             curr[curr.<=0] .= 0
             curr = curr .* 8
             precip[key] = precip[key] .+ curr
+
         end
+        snowd[key] = snowd[key] ./ length(lats[j])
+        airT[key] = airT[key] ./ length(lats[j])
         precip[key] = precip[key] ./ length(lats[j])
     end
-    print("\r                                       ")
-    print("\rProcessing Precip: $(round((i-1980)/0.35;digits=2))% complete ")
+    print("\rProcessing Data: [")
+    for r=1981:i  print("#") end
+    for r=i:2015 print(" ") end
+    print("] $(round((i-1980)/0.35;digits=2))% complete  ")
 end
 
 
+
+
+
+    
 
 
 
