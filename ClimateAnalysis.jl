@@ -1,5 +1,34 @@
 using NetCDF, Statistics, Plots, Distributed, StatGeochem, Polynomials
 
+"""
+Name:Nestor Orozco-Llamas
+Class: EARS13
+Final Project
+
+
+
+!!!!!!!!!!!!!!!!! IMPORTANT!!!!!!!!!!!!!!!!
+
+
+Notes about the datasets (Reanalysis data is a few gigabytes):
+
+You can download the dataset using an ftp client accessing: ftp2.psl.noaa.gov
+The datasets are all in the /Datasets/20thC_ReanV3/Dailies/accumsMO/ directory
+In the directory you need to download:
+
+apcp.1981.nc .... apcp.1981.nc              #Precip amounts 
+air.sig995.1981.nc .... air.sig995.2015.nc  #Temps  
+snowd.1981.nc .... snowd.2015.nc            #Snowd amounts 
+
+You can also download them online visiting: 
+
+http://psl.noaa.gov/cgi-bin/db_search/DBListFiles.pl?did=210&tid=76965&vid=5202
+http://psl.noaa.gov/cgi-bin/db_search/DBListFiles.pl?did=210&tid=76964&vid=5246
+http://psl.noaa.gov/cgi-bin/db_search/DBListFiles.pl?did=210&tid=76964&vid=5205
+
+The station data was self-processed and made into a csv
+
+"""
 
 
 #-------------------  Data Processing Variables -----------------------------
@@ -254,10 +283,6 @@ meansofmeans = [mean(precip_means[1,:]),mean(precip_means[2,:]),mean(precip_mean
 stdsofmeans = [std(precip_means[1,:]),std(precip_means[2,:]),std(precip_means[3,:]),std(precip_means[4,:])]
 p9=plot(years, meansofmeans,yerr=2*stdsofmeans,seriestype=:scatter,framestyle=:box,title="$(packName) Sierra Resampled Mean Precip",ylabel="Precip (in)",xlabel="year",legend=:false)
 savefig(p9, "./Figures/$(packName)Precip-Decade-Resampled.png")
-
-
-
-
 
 
 #----------------------------- Air Temperature ------------------------------
