@@ -8,7 +8,9 @@ The datasets are all in the /Datasets/20thC_ReanV3/Dailies/accumsMO/ directory
 In the directory you need to download:
 
 apcp.1981.nc .... apcp.1981.nc              #Precip amounts 
+
 air.sig995.1981.nc .... air.sig995.2015.nc  #Temps  
+
 snowd.1981.nc .... snowd.2015.nc            #Snowd amounts 
 
 You can also download them online visiting: 
